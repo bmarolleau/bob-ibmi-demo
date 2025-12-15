@@ -8,13 +8,39 @@ This comprehensive modernization plan transforms the legacy IBM i Display File *
 
 ## 📋 Table of Contents
 
-1. [Legacy System Analysis](#legacy-system-analysis)
-2. [Modernization Architecture](#modernization-architecture)
-3. [Deliverables](#deliverables)
-4. [Implementation Roadmap](#implementation-roadmap)
-5. [Technology Stack](#technology-stack)
-6. [Key Benefits](#key-benefits)
-7. [Next Steps](#next-steps)
+1. [Application Overview](#application-overview)
+2. [Legacy System Analysis](#legacy-system-analysis)
+3. [Modernization Architecture](#modernization-architecture)
+4. [Deliverables](#deliverables)
+5. [Implementation Roadmap](#implementation-roadmap)
+6. [Technology Stack](#technology-stack)
+7. [Key Benefits](#key-benefits)
+8. [Next Steps](#next-steps)
+
+---
+
+## Application Overview
+
+This IBM i application is a comprehensive business management system with the following modules:
+
+- **Articles** - Product/inventory management
+- **Customers** - Customer master data and relationships
+- **Providers** - Supplier management
+- **Orders** - Order processing and fulfillment
+- **Parameters** - Application configuration
+
+The application consists of **85+ artifacts** including:
+- 11 Physical Files (master data)
+- 13 Logical Files (indexed views)
+- 16 Display Files (5250 UI)
+- 12 Service Programs (reusable business logic)
+- 20+ Application Programs
+
+For a complete dependency graph and artifact catalog, see **[00-Application-Dependency-Graph.md](00-Application-Dependency-Graph.md)**.
+
+### Critical Dependencies
+
+⚠️ **Note**: The FCOUNTRY service program is currently missing and must be built before compiling CUS200 and PRO200 programs. See the dependency graph document for build instructions.
 
 ---
 

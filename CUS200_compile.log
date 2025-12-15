@@ -1,0 +1,1941 @@
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+CPC2198: Current library changed to SAMCO.
+CPF2103: Library SAMCO already exists in library list.
+
+>> executing command: CRTSQLRPGI srcstmf('/home/benoit/projects/bob-ibmi-demo/QRPGLESRC/CUS200.PGM.SQLRPGLE') OBJ(SAMCO/CUS200) COMMIT(*NONE) OBJTYPE(*PGM) OPTION(*EVENTF) OUTPUT(*PRINT) TEXT('') TGTRLS() DBGVIEW(*SOURCE) RPGPPOPT(*LVL2) COMPILEOPT('TGTCCSID(297) OPTIMIZE() INCDIR(''includes'' ''QPROTOSRC'')')
+>> liblist: QSYS QSYS2 QHLPSYS QUSRSYS QSHELL SAMCO QGPL QTEMP SAMCO
+>> executing time: 2025-12-15-22.55.29.00
+
+RNS9301: Program CUS200 in library SAMCO not created.
+RNS9310: Compilation failed. Program CUS200 not created in library SAMCO.
+ 5770WDS V7R5M0  220415 RN        IBM ILE RPG             SAMCO/CUS200             DEMOP      12/15/25 22:55:29        Page      1
+  Command  . . . . . . . . . . . . :   CRTBNDRPG
+    Issued by  . . . . . . . . . . :     BENOIT
+  Program  . . . . . . . . . . . . :   CUS200
+    Library  . . . . . . . . . . . :     SAMCO
+  Text 'description' . . . . . . . :
+  Source stream file   . . . . . . :   /home/benoit/projects/bob-ibmi-demo/QRPGLESRC/CUS2
+                                       00.PGM.SQLRPGLE
+    CCSID  . . . . . . . . . . . . :     1208
+  Target CCSID . . . . . . . . . . :   297
+  Text 'description' . . . . . . . :
+  Last Change  . . . . . . . . . . :   12/15/25  20:46:38
+  Generation severity level  . . . :   10
+  Default activation group . . . . :   *YES
+  Compiler options . . . . . . . . :   *XREF      *GEN       *NOSECLVL  *SHOWCPY
+                                       *EXPDDS    *EXT       *NOSHOWSKP *NOSRCSTMT
+                                       *DEBUGIO   *UNREF     *EVENTF
+  Debugging views  . . . . . . . . :   *ALL
+  Debug encryption key . . . . . . :   *NONE
+  Output . . . . . . . . . . . . . :   *PRINT
+  Optimization level . . . . . . . :   *NONE
+  Source listing indentation . . . :   *NONE
+  Type conversion options  . . . . :   *NONE
+  Sort sequence  . . . . . . . . . :   *JOB
+  Language identifier  . . . . . . :   *JOB
+  Replace program  . . . . . . . . :   *YES
+  User profile . . . . . . . . . . :   *USER
+  Authority  . . . . . . . . . . . :   *LIBCRTAUT
+  Truncate numeric . . . . . . . . :   *YES
+  Fix numeric  . . . . . . . . . . :   *NONE
+  Target release . . . . . . . . . :   V7R5M0
+  Allow null values  . . . . . . . :   *NO
+  Define condition names . . . . . :   *NONE
+  Enable performance collection  . :   *PEP
+  Profiling data . . . . . . . . . :   *NOCOL
+  Licensed Internal Code options . :
+  Generate program interface . . . :   *NO
+  Include directory  . . . . . . . :   includes
+                                   :   QPROTOSRC
+  Preprocessor options . . . . . . :   *NORMVCOMMENT *EXPINCLUDE   *NOSEQSRC
+  Output source file . . . . . . . :   QSQLPRE
+    Library  . . . . . . . . . . . :     QTEMP
+  Output source member . . . . . . :   CUS200
+  MINIMUM OUTPUT LINE LENGTH . . . :   100
+  Require prototype for export . . :   *NO
+ 5770WDS V7R5M0  220415 RN        IBM ILE RPG             SAMCO/CUS200             DEMOP      12/15/25 22:55:29        Page      2
+Line   <---------------------- Source Specifications ----------------------------><---- Comments ----> Do  Page  Change Src Seq
+Number ....1....+....2....+....3....+....4....+....5....+....6....+....7....+....8....+....9....+...10 Num Line  Date   Id  Number
+                          S o u r c e   L i s t i n g
+     1                                                                                                                      000001
+     2 h dftactgrp(*no) bnddir('SAMPLE')                                                                                    000002
+     3                                                                                                                      000003
+     4 fcustome2  if   e           k disk    rename(fcust:fcust2)                                                           000004
+     5 fcustome1  uf a e           k disk                                                                                   000005
+     6 fcus200d   cf   e             workstn                                                                                000006
+     7 F                                     indds(indds)                                                                   000007
+     8 F                                     sfile(sfl01:rrn01)                                                             000008
+     9 F                                     Infds(Info)                                                                    000009
+    10                                                                                                                      000010
+    11  /copy qprotosrc/country                                                                                             000011
+        *--------------------------------------------------------------------------------------------*
+        * RPG member name  . . . . . :  country.r+                                                   *                     1
+        * External name  . . . . . . :  ./qprotosrc/country.rpgleinc                                 *                     1
+        * Last change  . . . . . . . :  12/12/25  13:55:03                                           *                     1
+        *--------------------------------------------------------------------------------------------*
+    12+ *=============================================                                                                     1000001
+    13+ * Get COUNTRY NAME                                                                                                 1000002
+    14+ *=============================================                                                                     1000003
+    15+DGetCountryName   PR            30A                                                                                 1000004
+    16+D COID                           2A    value                                                                        1000005
+    17+ *=============================================                                                                     1000006
+    18+ * Get Iso Code alpha-3                                                                                             1000007
+    19+ *=============================================                                                                     1000008
+    20+DGetCountryIso3   PR             3A                                                                                 1000009
+    21+D COID                           2A    value                                                                        1000010
+    22+ *=============================================                                                                     1000011
+    23+ * Check if country code exist                                                                                      1000012
+    24+ *=============================================                                                                     1000013
+    25+D ExistCountry    PR              n                                                                                 1000014
+    26+D COID                           2A    value                                                                        1000015
+    27+ *=============================================                                                                     1000016
+    28+ * Select a country code                                                                                            1000017
+    29+ *=============================================                                                                     1000018
+    30+D SltCountry      PR             2a                                                                                 1000019
+    31+D COID                           2A                                                                                 1000020
+    32+ *=============================================                                                                     1000021
+    33+ * Close COUNTRY                                                                                                    1000022
+    34+ *=============================================                                                                     1000023
+    35+D CloseCOUNTRY    PR                                                                                                1000024
+    36                                                                                                                      000012
+    37 d orders          pr                  extpgm('ORD200')                                                               000013
+    38 d  id                                 like(cuid)                                                                     000014
+    39                                                                                                                      000015
+    40 D indds           ds                                                                                                 000016
+    41 D  help                   1      1n                                                                                  000017
+    42 D  exit                   3      3n                                                                                  000018
+    43 D  prompt                 4      4n                                                                                  000019
+    44 D  refresh                5      5n                                                                                  000020
+    45 D  create                 6      6n                                                                                  000021
+    46 D  cancel                12     12n                                                                                  000022
+    47 D  morekeys              24     24n                                                                                  000023
+    48 D  pagedown              25     25n                                                                                  000024
+ 5770WDS V7R5M0  220415 RN        IBM ILE RPG             SAMCO/CUS200             DEMOP      12/15/25 22:55:29        Page      3
+Line   <---------------------- Source Specifications ----------------------------><---- Comments ----> Do  Page  Change Src Seq
+Number ....1....+....2....+....3....+....4....+....5....+....6....+....7....+....8....+....9....+...10 Num Line  Date   Id  Number
+    49 D  sflclr                30     30n                                                                                  000025
+    50 D  sfldsp                31     31n                                                                                  000026
+    51 D  sfldspctl             32     32n                                                                                  000027
+    52 D  sflnxtchg             33     33n                                                                                  000028
+    53 D  dspatr_ri             34     34n                                                                                  000029
+    54 D  sflmsg                35     35n                                                                                  000030
+    55 D  ErrCountry            40     40n                                                                                  000031
+    56 D  ErrName               41     41n                                                                                  000032
+    57 D  sflend                80     80n                                                                                  000033
+    58                                                                                                                      000034
+    59 D info            ds                                                                                                 000035
+    60 D  lrrn                 378    379i 0                                                                                000036
+    61                                                                                                                      000037
+    62 D rrn01           s              5i 0                                                                                000038
+    63 D rrs01           s              5i 0                                                                                000039
+    64 D err01           s               n                                                                                  000040
+    65                                                                                                                      000041
+    66 D panel           S              3i 0 INZ(1)                                                                         000042
+    67 D step01          S              3    inz(prp)                                                                       000043
+    68 D step02          S              3    inz(prp)                                                                       000044
+    69 D step03          S              3    inz(prp)                                                                       000045
+    70 d savId           s                   like(cuid)                                                                     000046
+    71 d savName         s                   like(custnm)                                                                   000047
+    72 d User            s             10    inz(*user)                                                                     000048
+    73 d count           s              3i 0                                                                                000049
+    74                                                                                                                      000050
+    75 d crt             c                   'CRT'                                                                          000051
+    76 d upd             c                   'UPD'                                                                          000052
+    77 d prp             c                   'prp'                                                                          000053
+    78 d lod             c                   'lod'                                                                          000054
+    79 d dsp             c                   'dsp'                                                                          000055
+    80 d key             c                   'key'                                                                          000056
+    81 d chk             c                   'chk'                                                                          000057
+    82 d chkctl          c                   'chc'                                                                          000058
+    83 d actctl          c                   'acc'                                                                          000059
+    84 d act             c                   'act'                                                                          000060
+    85 d datBlank        c                   d'1940-01-01'                                                                  000061
+    86  /free                                                                                                               000062
+    87   select;                                                                                                            000063
+    88   when panel = 1;                                                                                                    000064
+    89     exsr pnl01;                                                                                                      000065
+    90   when panel = 2;                                                                                                    000066
+    91     exsr pnl02;                                                                                                      000067
+    92   other;                                                                                                             000068
+    93     exsr pnl00;                                                                                                      000069
+    94   endsl;                                                                                                             000070
+    95   //- Subfiles  01 Subroutines --------------------------------------  ---                                           000071
+    96   begsr pnl01;                                                                                                       000072
+    97     select ;                                                                                                         000073
+    98     when step01 = prp ;                                                                                              000074
+    99       exsr s01prp;                                                                                                   000075
+   100     when step01 = lod ;                                                                                              000076
+   101       exsr s01lod;                                                                                                   000077
+   102     when step01 = dsp ;                                                                                              000078
+   103       exsr s01dsp;                                                                                                   000079
+   104     when step01 = key ;                                                                                              000080
+ 5770WDS V7R5M0  220415 RN        IBM ILE RPG             SAMCO/CUS200             DEMOP      12/15/25 22:55:29        Page      4
+Line   <---------------------- Source Specifications ----------------------------><---- Comments ----> Do  Page  Change Src Seq
+Number ....1....+....2....+....3....+....4....+....5....+....6....+....7....+....8....+....9....+...10 Num Line  Date   Id  Number
+   105       exsr s01key;                                                                                                   000081
+   106     when step01 = chk ;                                                                                              000082
+   107       exsr s01chk;                                                                                                   000083
+   108     when step01 = act ;                                                                                              000084
+   109       exsr s01act ;                                                                                                  000085
+   110     endsl;                                                                                                           000086
+   111   endsr;                                                                                                             000087
+   112   //--- Clear Subfile  ----------------------------------------------------                                          000088
+   113   begsr s01prp;                                                                                                      000089
+   114     RRn01 = 0;                                                                                                       000090
+   115     sflclr = *on;                                                                                                    000091
+   116     write ctl01;                                                                                                     000092
+   117     sflclr = *off;                                                                                                   000093
+   118     step01 = lod;                                                                                                    000094
+   119     clear savid;                                                                                                     000095
+   120     savName = posTo;                                                                                                 000096
+   121     clear posTo;                                                                                                     000097
+   122     rrs01 = 0;                                                                                                       000098
+   123   endsr;                                                                                                             000099
+   124   //--- Load Subfile  -----------------------------------------------------                                          000100
+   125   begsr s01lod;                                                                                                      000101
+   126     exsr s01rst;                                                                                                     000102
+   127     RRb01 = RRn01 + 1;                                                                                               000103
+   128     opt01 = 0;                                                                                                       000104
+   129     count = 0;                                                                                                       000105
+   130     read custome2;                                                                                                   000106
+   131     dow not %eof(custome2) and count < 14;                                                                           000107
+   132       RRN01 += 1;                                                                                                    000108
+   133       count += 1;                                                                                                    000109
+   134       write sfl01;                                                                                                   000110
+   135       read custome2;                                                                                                 000111
+   136     enddo;                                                                                                           000112
+   137     sflend = %eof(custome2);                                                                                         000113
+   138     step01 = dsp;                                                                                                    000114
+   139     exsr s01sav;                                                                                                     000115
+   140   endsr;                                                                                                             000116
+   141   //--- restore last read -------------------------------------------------                                          000117
+   142   begsr s01rst;                                                                                                      000118
+   143     setll (savName:savid)  custome2;                                                                                 000119
+   144     rrn01 = rrs01;                                                                                                   000120
+   145   endsr;                                                                                                             000121
+   146   //--- Save last read -------------------------------------------------                                             000122
+   147   begsr s01sav;                                                                                                      000123
+   148     savid = cuid;                                                                                                    000124
+   149     savName = custNm;                                                                                                000125
+   150     rrs01 = rrn01;                                                                                                   000126
+   151   endsr;                                                                                                             000127
+   152   //--- Display Subfile  --------------------------------------------------                                          000128
+   153   begsr s01dsp;                                                                                                      000129
+   154     sfldspctl = *on;                                                                                                 000130
+   155     sfldsp = RRn01 > 0;                                                                                              000131
+   156                                                                                                                      000132
+   157     write key01;                                                                                                     000133
+   158     exfmt ctl01;                                                                                                     000134
+   159     if LRRN <>0;                                                                                                     000135
+   160       RRb01 = LRRN;                                                                                                  000136
+ 5770WDS V7R5M0  220415 RN        IBM ILE RPG             SAMCO/CUS200             DEMOP      12/15/25 22:55:29        Page      5
+Line   <---------------------- Source Specifications ----------------------------><---- Comments ----> Do  Page  Change Src Seq
+Number ....1....+....2....+....3....+....4....+....5....+....6....+....7....+....8....+....9....+...10 Num Line  Date   Id  Number
+   161     endif;                                                                                                           000137
+   162     step01 = key;                                                                                                    000138
+   163   endsr;                                                                                                             000139
+   164   //--- Command Keys  -----------------------------------------------------                                          000140
+   165   begsr s01key;                                                                                                      000141
+   166     select;                                                                                                          000142
+   167     when exit;                                                                                                       000143
+   168       panel  = 0;                                                                                                    000144
+   169       step01 = prp;                                                                                                  000145
+   170     when cancel;                                                                                                     000146
+   171       step01 = prp;                                                                                                  000147
+   172       panel  = panel  - 1;                                                                                           000148
+   173     when refresh;                                                                                                    000149
+   174       step01 = prp;                                                                                                  000150
+   175     when create;                                                                                                     000151
+   176       step01 = dsp;                                                                                                  000152
+   177       panel  = 2;                                                                                                    000153
+   178       step02 = dsp;                                                                                                  000154
+   179       mode = CRT;                                                                                                    000155
+   180       reset fcust;                                                                                                   000156
+   181       exec sql set :Cuid  = NEXT VALUE FOR CusSeq     ;                                                              000157
+   182     when pagedown;                                                                                                   000158
+   183       step01 = lod;                                                                                                  000159
+   184     other;                                                                                                           000160
+   185       step01 = chk;                                                                                                  000161
+   186     endsl;                                                                                                           000162
+   187   endsr;                                                                                                             000163
+   188   //--- Check Subfile  ----------------------------------------------------                                          000164
+   189   begsr s01chk;                                                                                                      000165
+   190     step01 = act;                                                                                                    000166
+   191     err01 = *off;                                                                                                    000167
+   192     sflnxtchg = *on;                                                                                                 000168
+   193     readc(e) sfl01;                                                                                                  000169
+   194     dow not %error and not %eof;                                                                                     000170
+   195       if opt01  <> 0 and opt01  <> 2 and opt01  <> 5;                                                                000171
+   196         step01 = dsp;                                                                                                000172
+   197         dspatr_ri = *on;                                                                                             000173
+   198         sflmsg = *on;                                                                                                000174
+   199         if not err01;                                                                                                000175
+   200           rrb01 = rrn01;                                                                                             000176
+   201           err01 = *on;                                                                                               000177
+   202         endif;                                                                                                       000178
+   203       endif;                                                                                                         000179
+   204       update sfl01;                                                                                                  000180
+   205       dspatr_ri = *off;                                                                                              000181
+   206       readc(e) sfl01;                                                                                                000182
+   207     enddo;                                                                                                           000183
+   208     sflnxtchg = *off;                                                                                                000184
+   209   endsr;                                                                                                             000185
+   210   //--- action Subfile  ---------------------------------------------------                                          000186
+   211   begsr s01act;                                                                                                      000187
+   212     readc(e) sfl01;                                                                                                  000188
+   213     select;                                                                                                          000189
+   214     when %error or %eof;                                                                                             000190
+   215       if posto <> ' ';                                                                                               000191
+   216         step01 = prp;                                                                                                000192
+ 5770WDS V7R5M0  220415 RN        IBM ILE RPG             SAMCO/CUS200             DEMOP      12/15/25 22:55:29        Page      6
+Line   <---------------------- Source Specifications ----------------------------><---- Comments ----> Do  Page  Change Src Seq
+Number ....1....+....2....+....3....+....4....+....5....+....6....+....7....+....8....+....9....+...10 Num Line  Date   Id  Number
+   217       else;                                                                                                          000193
+   218         step01 = dsp;                                                                                                000194
+   219       endif;                                                                                                         000195
+   220     when opt01 = 2;                                                                                                  000196
+   221       mode = upd;                                                                                                    000197
+   222       panel = 2;                                                                                                     000198
+   223       step02 = prp;                                                                                                  000199
+   224       opt01 = 0;                                                                                                     000200
+   225       update sfl01;                                                                                                  000201
+   226     when opt01 = 5;                                                                                                  000202
+   227       orders(cuid);                                                                                                  000203
+   228       opt01 = 0;                                                                                                     000204
+   229       update sfl01;                                                                                                  000205
+   230     other;                                                                                                           000206
+   231                                                                                                                      000207
+   232     endsl;                                                                                                           000208
+   233   endsr;                                                                                                             000209
+   234                                                                                                                      000210
+   235                                                                                                                      000211
+   236   //--- Format 02 Subroutines ------------------------------------     ---                                           000212
+   237   begsr pnl02;                                                                                                       000213
+   238     select ;                                                                                                         000214
+   239     when step02 = prp ;                                                                                              000215
+   240       exsr s02prp;                                                                                                   000216
+   241     when step02 = dsp ;                                                                                              000217
+   242       exsr s02dsp;                                                                                                   000218
+   243     when step02 = key ;                                                                                              000219
+   244       exsr s02key;                                                                                                   000220
+   245     when step02 = chk ;                                                                                              000221
+   246       exsr s02chk;                                                                                                   000222
+   247     when step02 = act ;                                                                                              000223
+   248       exsr s02act ;                                                                                                  000224
+   249     endsl;                                                                                                           000225
+   250                                                                                                                      000226
+   251   endsr;                                                                                                             000227
+   252   //--- clear & Load ------------------------------------------------------                                          000228
+   253   begsr S02prp;                                                                                                      000229
+   254     chain cuid custome1;                                                                                             000230
+   255     coname = GetCountryName(CuCoun);                                                                                 000231
+   256     if CULASTORD = 0;                                                                                                000232
+   257       LASTORD = datBlank;                                                                                            000233
+   258     else;                                                                                                            000234
+   259       LASTORD  =%date(CULASTORD:*iso);                                                                               000235
+   260     ENDIF;                                                                                                           000236
+   261     step02 = dsp;                                                                                                    000237
+   262   endsr;                                                                                                             000238
+   263   //--- Display  ----------------------------------------------------------                                          000239
+   264   begsr S02dsp;                                                                                                      000240
+   265     exfmt fmt02;                                                                                                     000241
+   266     step02 = key;                                                                                                    000242
+   267   endsr;                                                                                                             000243
+   268   //--- command Keys  -----------------------------------------------------                                          000244
+   269   begsr S02key;                                                                                                      000245
+   270     select;                                                                                                          000246
+   271     when exit;                                                                                                       000247
+   272       panel  = 1;                                                                                                    000248
+ 5770WDS V7R5M0  220415 RN        IBM ILE RPG             SAMCO/CUS200             DEMOP      12/15/25 22:55:29        Page      7
+Line   <---------------------- Source Specifications ----------------------------><---- Comments ----> Do  Page  Change Src Seq
+Number ....1....+....2....+....3....+....4....+....5....+....6....+....7....+....8....+....9....+...10 Num Line  Date   Id  Number
+   273       step02 = prp;                                                                                                  000249
+   274     when cancel;                                                                                                     000250
+   275       step02 = prp;                                                                                                  000251
+   276       panel  = panel  - 1;                                                                                           000252
+   277     when prompt;                                                                                                     000253
+   278       step02 = dsp;                                                                                                  000254
+   279       cucoun = SltCountry(cucoun);                                                                                   000255
+   280       coname = GetCountryName(CuCoun);                                                                               000256
+   281     other;                                                                                                           000257
+   282       step02 = chk;                                                                                                  000258
+   283     endsl;                                                                                                           000259
+   284   endsr;                                                                                                             000260
+   285   //--- check -------------------------------------------------------------                                          000261
+   286   begsr S02chk;                                                                                                      000262
+   287     step02 = act;                                                                                                    000263
+   288     if not ExistCountry(cucoun);                                                                                     000264
+   289       errCountry = *on;                                                                                              000265
+   290       step02 = dsp;                                                                                                  000266
+   291     endif;                                                                                                           000267
+   292     if custnm = *blanks;                                                                                             000268
+   293       errName = *on;                                                                                                 000269
+   294       step02 = dsp;                                                                                                  000270
+   295     endif;                                                                                                           000271
+   296                                                                                                                      000272
+   297   endsr;                                                                                                             000273
+   298   //--- Action ------------------------------------------------------------                                          000274
+   299   begsr S02act;                                                                                                      000275
+   300     step02 = prp;                                                                                                    000276
+   301     cumod = %timestamp();                                                                                            000277
+   302     if mode = upd;                                                                                                   000278
+   303       update fcust;                                                                                                  000279
+   304     else;                                                                                                            000280
+   305       write fcust;                                                                                                   000281
+   306     endif;                                                                                                           000282
+   307     panel = 1;                                                                                                       000283
+   308   endsr;                                                                                                             000284
+   309                                                                                                                      000285
+   310   //--------INITIALIZATION ----------------------------------                                                        000286
+   311   begsr *inzsr;                                                                                                      000287
+   312     cumodid = user;                                                                                                  000288
+   313     cucrea = %date();                                                                                                000289
+   314     LASTORD = datblank;                                                                                              000290
+   315   endsr;                                                                                                             000291
+   316   //--------END SUBROUTINE ----------------------------------                                                        000292
+   317   begsr pnl00;                                                                                                       000293
+   318     *inlr = *on;                                                                                                     000294
+   319   endsr;                                                                                                             000295
+   320  /end-free                                                                                                           000296
+   321                                                                                                                      000297
+       * * * * *   E N D   O F   S O U R C E   * * * * *
+                            / C o p y   M e m b e r s
+Line   Src  RPG name   <-------- External name -------> CCSID  <- Last change ->
+ 5770WDS V7R5M0  220415 RN        IBM ILE RPG             SAMCO/CUS200             DEMOP      12/15/25 22:55:29        Page      8
+Number Id              Library    File       Member            Date     Time
+    11    1 country.r+ ./qprotosrc/country.rpgleinc       819  12/12/25 13:55:03
+         * * * * *   E N D   O F   / C O P Y   M E M B E R S   * * * * *
+ 5770WDS V7R5M0  220415 RN        IBM ILE RPG             SAMCO/CUS200             DEMOP      12/15/25 22:55:29        Page      9
+Line   <---------------------- Data Records -------------------------------------------------------------->      Change Src Seq
+Number ....+....1....+....2....+....3....+....4....+....5....+....6....+....7....+....8....+....9....+...10      Date   Id  Number
+                       C o m p i l e   T i m e   D a t a
+    * * * * *   E N D   O F   C O M P I L E   T I M E   D A T A   * * * * *
+ 5770WDS V7R5M0  220415 RN        IBM ILE RPG             SAMCO/CUS200             DEMOP      12/15/25 22:55:29        Page     10
+                          M e s s a g e   S u m m a r y
+ Msg id  Sv Number Message text
+       * * * * *   E N D   O F   M E S S A G E   S U M M A R Y   * * * * *
+ 5770WDS V7R5M0  220415 RN        IBM ILE RPG             SAMCO/CUS200             DEMOP      12/15/25 22:55:29        Page     11
+                            F i n a l   S u m m a r y
+  Message Totals:
+    Information  (00) . . . . . . . :        0
+    Warning      (10) . . . . . . . :        0
+    Error        (20) . . . . . . . :        0
+    Severe Error (30+)  . . . . . . :        0
+    ---------------------------------  -------
+    Total . . . . . . . . . . . . . :        0
+  Source Totals:
+    Records . . . . . . . . . . . . :      321
+    Specifications  . . . . . . . . :      269
+    Data records  . . . . . . . . . :        0
+    Comments  . . . . . . . . . . . :       32
+         * * * * *   E N D   O F   F I N A L   S U M M A R Y   * * * * *
+Diagnostic check of source is complete. Highest severity is 00.
+          * * * * *   E N D   O F   C O M P I L A T I O N   * * * * *
+5770ST1 V7R5M0 220415            Create SQL ILE RPG Object         CUS200                      12/15/25 22:55:29          Page     1
+Source type...............RPG
+Object name...............SAMCO/CUS200
+Source file...............QTEMP/QSQLPRE
+Member....................*OBJ
+To source file............QTEMP/QSQLTEMP1
+Options...................*LSTDBG
+RPG preprocessor options..*LVL2
+Listing option............*PRINT
+Target release............V7R5M0
+INCLUDE file..............*LIBL/QRPGLESRC
+Commit....................*NONE
+Allow copy of data........*OPTIMIZE
+Close SQL cursor..........*ENDACTGRP
+Allow blocking............*ALLREAD
+Delay PREPARE.............*NO
+Concurrent access
+  resolution..............*DFT
+Generation level..........10
+Printer file..............*LIBL/QSYSPRT
+Date format...............*JOB
+Date separator............*JOB
+Time format...............*HMS
+Time separator ...........*JOB
+Replace...................*YES
+Relational database.......*LOCAL
+User .....................*CURRENT
+RDB connect method........*DUW
+Default collection........*NONE
+Dynamic default
+  collection..............*NO
+Package name..............*OBJLIB/*OBJ
+Path......................*NAMING
+SQL rules.................*DB2
+Created object type.......*PGM
+Debugging view............*SOURCE
+Debugging encryption key..*NONE
+User profile .............*NAMING
+Dynamic user profile......*USER
+Sort sequence.............*JOB
+Language ID...............*JOB
+IBM SQL flagging..........*NOFLAG
+ANS flagging..............*NONE
+Text......................
+Source file CCSID.........297
+Job CCSID.................37
+Decimal result options:
+  Maximum precision.......31
+  Maximum scale...........31
+  Minimum divide scale....0
+DECFLOAT rounding mode....*HALFEVEN
+Compiler options..........TGTCCSID(297) OPTIMIZE() INCDIR('includes' 'QPROTOSRC')
+Source member changed on 12/15/25  22:55:29
+5770ST1 V7R5M0 220415            Create SQL ILE RPG Object         CUS200                      12/15/25 22:55:29          Page     2
+Record  *...+... 1 ...+... 2 ...+... 3 ...+... 4 ...+... 5 ...+... 6 ...+... 7 ...+... 8   SEQNBR  Last change       Comments
+    1                                                                                      000001   12/15/25
+    2        h dftactgrp(*no) bnddir('SAMPLE')                                             000002   12/15/25
+    3                                                                                      000003   12/15/25
+    4        fcustome2  if   e           k disk    rename(fcust:fcust2)                    000004   12/15/25
+    5        fcustome1  uf a e           k disk                                            000005   12/15/25
+    6        fcus200d   cf   e             workstn                                         000006   12/15/25
+    7        F                                     indds(indds)                            000007   12/15/25
+    8        F                                     sfile(sfl01:rrn01)                      000008   12/15/25
+    9        F                                     Infds(Info)                             000009   12/15/25
+   10                                                                                      000010   12/15/25
+   11         * /copy qprotosrc/country                                                    000011   12/15/25
+   12         *=============================================                               000001   12/12/25
+   13         * Get COUNTRY NAME                                                           000002   12/12/25
+   14         *=============================================                               000003   12/12/25
+   15        DGetCountryName   PR            30A                                           000004   12/12/25
+   16        D COID                           2A    value                                  000005   12/12/25
+   17         *=============================================                               000006   12/12/25
+   18         * Get Iso Code alpha-3                                                       000007   12/12/25
+   19         *=============================================                               000008   12/12/25
+   20        DGetCountryIso3   PR             3A                                           000009   12/12/25
+   21        D COID                           2A    value                                  000010   12/12/25
+   22         *=============================================                               000011   12/12/25
+   23         * Check if country code exist                                                000012   12/12/25
+   24         *=============================================                               000013   12/12/25
+   25        D ExistCountry    PR              n                                           000014   12/12/25
+   26        D COID                           2A    value                                  000015   12/12/25
+   27         *=============================================                               000016   12/12/25
+   28         * Select a country code                                                      000017   12/12/25
+   29         *=============================================                               000018   12/12/25
+   30        D SltCountry      PR             2a                                           000019   12/12/25
+   31        D COID                           2A                                           000020   12/12/25
+   32         *=============================================                               000021   12/12/25
+   33         * Close COUNTRY                                                              000022   12/12/25
+   34         *=============================================                               000023   12/12/25
+   35        D CloseCOUNTRY    PR                                                          000024   12/12/25
+   36                                                                                      000012   12/15/25
+   37        d orders          pr                  extpgm('ORD200')                        000013   12/15/25
+   38        d  id                                 like(cuid)                              000014   12/15/25
+   39                                                                                      000015   12/15/25
+   40        D indds           ds                                                          000016   12/15/25
+   41        D  help                   1      1n                                           000017   12/15/25
+   42        D  exit                   3      3n                                           000018   12/15/25
+   43        D  prompt                 4      4n                                           000019   12/15/25
+   44        D  refresh                5      5n                                           000020   12/15/25
+   45        D  create                 6      6n                                           000021   12/15/25
+   46        D  cancel                12     12n                                           000022   12/15/25
+   47        D  morekeys              24     24n                                           000023   12/15/25
+   48        D  pagedown              25     25n                                           000024   12/15/25
+   49        D  sflclr                30     30n                                           000025   12/15/25
+   50        D  sfldsp                31     31n                                           000026   12/15/25
+   51        D  sfldspctl             32     32n                                           000027   12/15/25
+   52        D  sflnxtchg             33     33n                                           000028   12/15/25
+   53        D  dspatr_ri             34     34n                                           000029   12/15/25
+   54        D  sflmsg                35     35n                                           000030   12/15/25
+   55        D  ErrCountry            40     40n                                           000031   12/15/25
+   56        D  ErrName               41     41n                                           000032   12/15/25
+5770ST1 V7R5M0 220415            Create SQL ILE RPG Object         CUS200                      12/15/25 22:55:29          Page     3
+Record  *...+... 1 ...+... 2 ...+... 3 ...+... 4 ...+... 5 ...+... 6 ...+... 7 ...+... 8   SEQNBR  Last change       Comments
+   57        D  sflend                80     80n                                           000033   12/15/25
+   58                                                                                      000034   12/15/25
+   59        D info            ds                                                          000035   12/15/25
+   60        D  lrrn                 378    379i 0                                         000036   12/15/25
+   61                                                                                      000037   12/15/25
+   62        D rrn01           s              5i 0                                         000038   12/15/25
+   63        D rrs01           s              5i 0                                         000039   12/15/25
+   64        D err01           s               n                                           000040   12/15/25
+   65                                                                                      000041   12/15/25
+   66        D panel           S              3i 0 INZ(1)                                  000042   12/15/25
+   67        D step01          S              3    inz(prp)                                000043   12/15/25
+   68        D step02          S              3    inz(prp)                                000044   12/15/25
+   69        D step03          S              3    inz(prp)                                000045   12/15/25
+   70        d savId           s                   like(cuid)                              000046   12/15/25
+   71        d savName         s                   like(custnm)                            000047   12/15/25
+   72        d User            s             10    inz(*user)                              000048   12/15/25
+   73        d count           s              3i 0                                         000049   12/15/25
+   74                                                                                      000050   12/15/25
+   75        d crt             c                   'CRT'                                   000051   12/15/25
+   76        d upd             c                   'UPD'                                   000052   12/15/25
+   77        d prp             c                   'prp'                                   000053   12/15/25
+   78        d lod             c                   'lod'                                   000054   12/15/25
+   79        d dsp             c                   'dsp'                                   000055   12/15/25
+   80        d key             c                   'key'                                   000056   12/15/25
+   81        d chk             c                   'chk'                                   000057   12/15/25
+   82        d chkctl          c                   'chc'                                   000058   12/15/25
+   83        d actctl          c                   'acc'                                   000059   12/15/25
+   84        d act             c                   'act'                                   000060   12/15/25
+   85        d datBlank        c                   d'1940-01-01'                           000061   12/15/25
+   86         /free                                                                        000062   12/15/25
+   87          select;                                                                     000063   12/15/25
+   88          when panel = 1;                                                             000064   12/15/25
+   89            exsr pnl01;                                                               000065   12/15/25
+   90          when panel = 2;                                                             000066   12/15/25
+   91            exsr pnl02;                                                               000067   12/15/25
+   92          other;                                                                      000068   12/15/25
+   93            exsr pnl00;                                                               000069   12/15/25
+   94          endsl;                                                                      000070   12/15/25
+   95          //- Subfiles  01 Subroutines --------------------------------------  ---    000071   12/15/25
+   96          begsr pnl01;                                                                000072   12/15/25
+   97            select ;                                                                  000073   12/15/25
+   98            when step01 = prp ;                                                       000074   12/15/25
+   99              exsr s01prp;                                                            000075   12/15/25
+  100            when step01 = lod ;                                                       000076   12/15/25
+  101              exsr s01lod;                                                            000077   12/15/25
+  102            when step01 = dsp ;                                                       000078   12/15/25
+  103              exsr s01dsp;                                                            000079   12/15/25
+  104            when step01 = key ;                                                       000080   12/15/25
+  105              exsr s01key;                                                            000081   12/15/25
+  106            when step01 = chk ;                                                       000082   12/15/25
+  107              exsr s01chk;                                                            000083   12/15/25
+  108            when step01 = act ;                                                       000084   12/15/25
+  109              exsr s01act ;                                                           000085   12/15/25
+  110            endsl;                                                                    000086   12/15/25
+  111          endsr;                                                                      000087   12/15/25
+  112          //--- Clear Subfile  ----------------------------------------------------   000088   12/15/25
+5770ST1 V7R5M0 220415            Create SQL ILE RPG Object         CUS200                      12/15/25 22:55:29          Page     4
+Record  *...+... 1 ...+... 2 ...+... 3 ...+... 4 ...+... 5 ...+... 6 ...+... 7 ...+... 8   SEQNBR  Last change       Comments
+  113          begsr s01prp;                                                               000089   12/15/25
+  114            RRn01 = 0;                                                                000090   12/15/25
+  115            sflclr = *on;                                                             000091   12/15/25
+  116            write ctl01;                                                              000092   12/15/25
+  117            sflclr = *off;                                                            000093   12/15/25
+  118            step01 = lod;                                                             000094   12/15/25
+  119            clear savid;                                                              000095   12/15/25
+  120            savName = posTo;                                                          000096   12/15/25
+  121            clear posTo;                                                              000097   12/15/25
+  122            rrs01 = 0;                                                                000098   12/15/25
+  123          endsr;                                                                      000099   12/15/25
+  124          //--- Load Subfile  -----------------------------------------------------   000100   12/15/25
+  125          begsr s01lod;                                                               000101   12/15/25
+  126            exsr s01rst;                                                              000102   12/15/25
+  127            RRb01 = RRn01 + 1;                                                        000103   12/15/25
+  128            opt01 = 0;                                                                000104   12/15/25
+  129            count = 0;                                                                000105   12/15/25
+  130            read custome2;                                                            000106   12/15/25
+  131            dow not %eof(custome2) and count < 14;                                    000107   12/15/25
+  132              RRN01 += 1;                                                             000108   12/15/25
+  133              count += 1;                                                             000109   12/15/25
+  134              write sfl01;                                                            000110   12/15/25
+  135              read custome2;                                                          000111   12/15/25
+  136            enddo;                                                                    000112   12/15/25
+  137            sflend = %eof(custome2);                                                  000113   12/15/25
+  138            step01 = dsp;                                                             000114   12/15/25
+  139            exsr s01sav;                                                              000115   12/15/25
+  140          endsr;                                                                      000116   12/15/25
+  141          //--- restore last read -------------------------------------------------   000117   12/15/25
+  142          begsr s01rst;                                                               000118   12/15/25
+  143            setll (savName:savid)  custome2;                                          000119   12/15/25
+  144            rrn01 = rrs01;                                                            000120   12/15/25
+  145          endsr;                                                                      000121   12/15/25
+  146          //--- Save last read -------------------------------------------------      000122   12/15/25
+  147          begsr s01sav;                                                               000123   12/15/25
+  148            savid = cuid;                                                             000124   12/15/25
+  149            savName = custNm;                                                         000125   12/15/25
+  150            rrs01 = rrn01;                                                            000126   12/15/25
+  151          endsr;                                                                      000127   12/15/25
+  152          //--- Display Subfile  --------------------------------------------------   000128   12/15/25
+  153          begsr s01dsp;                                                               000129   12/15/25
+  154            sfldspctl = *on;                                                          000130   12/15/25
+  155            sfldsp = RRn01 > 0;                                                       000131   12/15/25
+  156                                                                                      000132   12/15/25
+  157            write key01;                                                              000133   12/15/25
+  158            exfmt ctl01;                                                              000134   12/15/25
+  159            if LRRN <>0;                                                              000135   12/15/25
+  160              RRb01 = LRRN;                                                           000136   12/15/25
+  161            endif;                                                                    000137   12/15/25
+  162            step01 = key;                                                             000138   12/15/25
+  163          endsr;                                                                      000139   12/15/25
+  164          //--- Command Keys  -----------------------------------------------------   000140   12/15/25
+  165          begsr s01key;                                                               000141   12/15/25
+  166            select;                                                                   000142   12/15/25
+  167            when exit;                                                                000143   12/15/25
+  168              panel  = 0;                                                             000144   12/15/25
+5770ST1 V7R5M0 220415            Create SQL ILE RPG Object         CUS200                      12/15/25 22:55:29          Page     5
+Record  *...+... 1 ...+... 2 ...+... 3 ...+... 4 ...+... 5 ...+... 6 ...+... 7 ...+... 8   SEQNBR  Last change       Comments
+  169              step01 = prp;                                                           000145   12/15/25
+  170            when cancel;                                                              000146   12/15/25
+  171              step01 = prp;                                                           000147   12/15/25
+  172              panel  = panel  - 1;                                                    000148   12/15/25
+  173            when refresh;                                                             000149   12/15/25
+  174              step01 = prp;                                                           000150   12/15/25
+  175            when create;                                                              000151   12/15/25
+  176              step01 = dsp;                                                           000152   12/15/25
+  177              panel  = 2;                                                             000153   12/15/25
+  178              step02 = dsp;                                                           000154   12/15/25
+  179              mode = CRT;                                                             000155   12/15/25
+  180              reset fcust;                                                            000156   12/15/25
+  181              exec sql set :Cuid  = NEXT VALUE FOR CusSeq     ;                       000157   12/15/25
+  182            when pagedown;                                                            000158   12/15/25
+  183              step01 = lod;                                                           000159   12/15/25
+  184            other;                                                                    000160   12/15/25
+  185              step01 = chk;                                                           000161   12/15/25
+  186            endsl;                                                                    000162   12/15/25
+  187          endsr;                                                                      000163   12/15/25
+  188          //--- Check Subfile  ----------------------------------------------------   000164   12/15/25
+  189          begsr s01chk;                                                               000165   12/15/25
+  190            step01 = act;                                                             000166   12/15/25
+  191            err01 = *off;                                                             000167   12/15/25
+  192            sflnxtchg = *on;                                                          000168   12/15/25
+  193            readc(e) sfl01;                                                           000169   12/15/25
+  194            dow not %error and not %eof;                                              000170   12/15/25
+  195              if opt01  <> 0 and opt01  <> 2 and opt01  <> 5;                         000171   12/15/25
+  196                step01 = dsp;                                                         000172   12/15/25
+  197                dspatr_ri = *on;                                                      000173   12/15/25
+  198                sflmsg = *on;                                                         000174   12/15/25
+  199                if not err01;                                                         000175   12/15/25
+  200                  rrb01 = rrn01;                                                      000176   12/15/25
+  201                  err01 = *on;                                                        000177   12/15/25
+  202                endif;                                                                000178   12/15/25
+  203              endif;                                                                  000179   12/15/25
+  204              update sfl01;                                                           000180   12/15/25
+  205              dspatr_ri = *off;                                                       000181   12/15/25
+  206              readc(e) sfl01;                                                         000182   12/15/25
+  207            enddo;                                                                    000183   12/15/25
+  208            sflnxtchg = *off;                                                         000184   12/15/25
+  209          endsr;                                                                      000185   12/15/25
+  210          //--- action Subfile  ---------------------------------------------------   000186   12/15/25
+  211          begsr s01act;                                                               000187   12/15/25
+  212            readc(e) sfl01;                                                           000188   12/15/25
+  213            select;                                                                   000189   12/15/25
+  214            when %error or %eof;                                                      000190   12/15/25
+  215              if posto <> ' ';                                                        000191   12/15/25
+  216                step01 = prp;                                                         000192   12/15/25
+  217              else;                                                                   000193   12/15/25
+  218                step01 = dsp;                                                         000194   12/15/25
+  219              endif;                                                                  000195   12/15/25
+  220            when opt01 = 2;                                                           000196   12/15/25
+  221              mode = upd;                                                             000197   12/15/25
+  222              panel = 2;                                                              000198   12/15/25
+  223              step02 = prp;                                                           000199   12/15/25
+  224              opt01 = 0;                                                              000200   12/15/25
+5770ST1 V7R5M0 220415            Create SQL ILE RPG Object         CUS200                      12/15/25 22:55:29          Page     6
+Record  *...+... 1 ...+... 2 ...+... 3 ...+... 4 ...+... 5 ...+... 6 ...+... 7 ...+... 8   SEQNBR  Last change       Comments
+  225              update sfl01;                                                           000201   12/15/25
+  226            when opt01 = 5;                                                           000202   12/15/25
+  227              orders(cuid);                                                           000203   12/15/25
+  228              opt01 = 0;                                                              000204   12/15/25
+  229              update sfl01;                                                           000205   12/15/25
+  230            other;                                                                    000206   12/15/25
+  231                                                                                      000207   12/15/25
+  232            endsl;                                                                    000208   12/15/25
+  233          endsr;                                                                      000209   12/15/25
+  234                                                                                      000210   12/15/25
+  235                                                                                      000211   12/15/25
+  236          //--- Format 02 Subroutines ------------------------------------     ---    000212   12/15/25
+  237          begsr pnl02;                                                                000213   12/15/25
+  238            select ;                                                                  000214   12/15/25
+  239            when step02 = prp ;                                                       000215   12/15/25
+  240              exsr s02prp;                                                            000216   12/15/25
+  241            when step02 = dsp ;                                                       000217   12/15/25
+  242              exsr s02dsp;                                                            000218   12/15/25
+  243            when step02 = key ;                                                       000219   12/15/25
+  244              exsr s02key;                                                            000220   12/15/25
+  245            when step02 = chk ;                                                       000221   12/15/25
+  246              exsr s02chk;                                                            000222   12/15/25
+  247            when step02 = act ;                                                       000223   12/15/25
+  248              exsr s02act ;                                                           000224   12/15/25
+  249            endsl;                                                                    000225   12/15/25
+  250                                                                                      000226   12/15/25
+  251          endsr;                                                                      000227   12/15/25
+  252          //--- clear & Load ------------------------------------------------------   000228   12/15/25
+  253          begsr S02prp;                                                               000229   12/15/25
+  254            chain cuid custome1;                                                      000230   12/15/25
+  255            coname = GetCountryName(CuCoun);                                          000231   12/15/25
+  256            if CULASTORD = 0;                                                         000232   12/15/25
+  257              LASTORD = datBlank;                                                     000233   12/15/25
+  258            else;                                                                     000234   12/15/25
+  259              LASTORD  =%date(CULASTORD:*iso);                                        000235   12/15/25
+  260            ENDIF;                                                                    000236   12/15/25
+  261            step02 = dsp;                                                             000237   12/15/25
+  262          endsr;                                                                      000238   12/15/25
+  263          //--- Display  ----------------------------------------------------------   000239   12/15/25
+  264          begsr S02dsp;                                                               000240   12/15/25
+  265            exfmt fmt02;                                                              000241   12/15/25
+  266            step02 = key;                                                             000242   12/15/25
+  267          endsr;                                                                      000243   12/15/25
+  268          //--- command Keys  -----------------------------------------------------   000244   12/15/25
+  269          begsr S02key;                                                               000245   12/15/25
+  270            select;                                                                   000246   12/15/25
+  271            when exit;                                                                000247   12/15/25
+  272              panel  = 1;                                                             000248   12/15/25
+  273              step02 = prp;                                                           000249   12/15/25
+  274            when cancel;                                                              000250   12/15/25
+  275              step02 = prp;                                                           000251   12/15/25
+  276              panel  = panel  - 1;                                                    000252   12/15/25
+  277            when prompt;                                                              000253   12/15/25
+  278              step02 = dsp;                                                           000254   12/15/25
+  279              cucoun = SltCountry(cucoun);                                            000255   12/15/25
+  280              coname = GetCountryName(CuCoun);                                        000256   12/15/25
+5770ST1 V7R5M0 220415            Create SQL ILE RPG Object         CUS200                      12/15/25 22:55:29          Page     7
+Record  *...+... 1 ...+... 2 ...+... 3 ...+... 4 ...+... 5 ...+... 6 ...+... 7 ...+... 8   SEQNBR  Last change       Comments
+  281            other;                                                                    000257   12/15/25
+  282              step02 = chk;                                                           000258   12/15/25
+  283            endsl;                                                                    000259   12/15/25
+  284          endsr;                                                                      000260   12/15/25
+  285          //--- check -------------------------------------------------------------   000261   12/15/25
+  286          begsr S02chk;                                                               000262   12/15/25
+  287            step02 = act;                                                             000263   12/15/25
+  288            if not ExistCountry(cucoun);                                              000264   12/15/25
+  289              errCountry = *on;                                                       000265   12/15/25
+  290              step02 = dsp;                                                           000266   12/15/25
+  291            endif;                                                                    000267   12/15/25
+  292            if custnm = *blanks;                                                      000268   12/15/25
+  293              errName = *on;                                                          000269   12/15/25
+  294              step02 = dsp;                                                           000270   12/15/25
+  295            endif;                                                                    000271   12/15/25
+  296                                                                                      000272   12/15/25
+  297          endsr;                                                                      000273   12/15/25
+  298          //--- Action ------------------------------------------------------------   000274   12/15/25
+  299          begsr S02act;                                                               000275   12/15/25
+  300            step02 = prp;                                                             000276   12/15/25
+  301            cumod = %timestamp();                                                     000277   12/15/25
+  302            if mode = upd;                                                            000278   12/15/25
+  303              update fcust;                                                           000279   12/15/25
+  304            else;                                                                     000280   12/15/25
+  305              write fcust;                                                            000281   12/15/25
+  306            endif;                                                                    000282   12/15/25
+  307            panel = 1;                                                                000283   12/15/25
+  308          endsr;                                                                      000284   12/15/25
+  309                                                                                      000285   12/15/25
+  310          //--------INITIALIZATION ----------------------------------                 000286   12/15/25
+  311          begsr *inzsr;                                                               000287   12/15/25
+  312            cumodid = user;                                                           000288   12/15/25
+  313            cucrea = %date();                                                         000289   12/15/25
+  314            LASTORD = datblank;                                                       000290   12/15/25
+  315          endsr;                                                                      000291   12/15/25
+  316          //--------END SUBROUTINE ----------------------------------                 000292   12/15/25
+  317          begsr pnl00;                                                                000293   12/15/25
+  318            *inlr = *on;                                                              000294   12/15/25
+  319          endsr;                                                                      000295   12/15/25
+  320         /end-free                                                                    000296   12/15/25
+  321                                                                                      000297   12/15/25
+                                * * * * *  E N D  O F  S O U R C E  * * * * *
+5770ST1 V7R5M0 220415            Create SQL ILE RPG Object         CUS200                      12/15/25 22:55:29          Page     8
+                                               CROSS REFERENCE
+Data Names                    Define    Reference
+ACT                              84       CHARACTER(3) CONSTANT
+ACTCTL                           83       CHARACTER(3) CONSTANT
+CANCEL                           46       BOOLEAN IN INDDS
+CHK                              81       CHARACTER(3) CONSTANT
+CHKCTL                           82       CHARACTER(3) CONSTANT
+CLOSECOUNTRY                     35
+CONAME                           6        CHARACTER(30)
+COUNT                            73       SMALL INTEGER PRECISION(4,0)
+CREATE                           45       BOOLEAN IN INDDS
+CRT                              75       CHARACTER(3) CONSTANT
+CUCITY                           6        CHARACTER(30)
+CUCOUN                           6        CHARACTER(2)
+CUCREA                           5        DATE(8)
+CUCREDIT                         6        DECIMAL(9,2)
+CUDEL                            6        CHARACTER(1)
+CUID                             6        DECIMAL(5,0)
+                                          181
+CULASTORD                        5        DECIMAL(8,0)
+CULIMCRE                         6        DECIMAL(9,2)
+CULINE1                          6        CHARACTER(50)
+CULINE2                          6        CHARACTER(50)
+CULINE3                          6        CHARACTER(50)
+CUMAIL                           6        CHARACTER(50)
+CUMOD                            5        TIMESTAMP(26)
+CUMODID                          5        CHARACTER(10)
+CUPHONE                          6        CHARACTER(15)
+CUSSEQ                           ****     SEQUENCE
+                                          181
+CUSTNM                           6        CHARACTER(30)
+CUVAT                            6        CHARACTER(12)
+5770ST1 V7R5M0 220415            Create SQL ILE RPG Object         CUS200                      12/15/25 22:55:29          Page     9
+                                               CROSS REFERENCE
+CUZIP                            6        CHARACTER(10)
+DATBLANK                         85       DATE(8) CONSTANT
+DSP                              79       CHARACTER(3) CONSTANT
+DSPATR_RI                        53       BOOLEAN IN INDDS
+ERRCOUNTRY                       55       BOOLEAN IN INDDS
+ERRNAME                          56       BOOLEAN IN INDDS
+ERR01                            64       BOOLEAN
+EXISTCOUNTRY                     25       BOOLEAN
+EXIT                             42       BOOLEAN IN INDDS
+GETCOUNTRYISO3                   20       CHARACTER(3)
+GETCOUNTRYNAME                   15       CHARACTER(30)
+HELP                             41       BOOLEAN IN INDDS
+INDDS                            40       STRUCTURE
+INFO                             59       STRUCTURE
+KEY                              80       CHARACTER(3) CONSTANT
+LASTORD                          6        DATE(8)
+LOD                              78       CHARACTER(3) CONSTANT
+LRRN                             60       SMALL INTEGER PRECISION(4,0) IN INFO
+MODE                             6        CHARACTER(3)
+MOREKEYS                         47       BOOLEAN IN INDDS
+OPT01                            6        DECIMAL(2,0)
+ORDERS                           37
+PAGEDOWN                         48       BOOLEAN IN INDDS
+PANEL                            66       SMALL INTEGER PRECISION(4,0)
+POSTO                            6        CHARACTER(10)
+PROMPT                           43       BOOLEAN IN INDDS
+PRP                              77       CHARACTER(3) CONSTANT
+REFRESH                          44       BOOLEAN IN INDDS
+5770ST1 V7R5M0 220415            Create SQL ILE RPG Object         CUS200                      12/15/25 22:55:29          Page    10
+                                               CROSS REFERENCE
+RRB01                            6        DECIMAL(4,0)
+RRN01                            62       SMALL INTEGER PRECISION(4,0)
+RRS01                            63       SMALL INTEGER PRECISION(4,0)
+SAVID                            70       DECIMAL(5,0)
+SAVNAME                          71       CHARACTER(30)
+SFLCLR                           49       BOOLEAN IN INDDS
+SFLDSP                           50       BOOLEAN IN INDDS
+SFLDSPCTL                        51       BOOLEAN IN INDDS
+SFLEND                           57       BOOLEAN IN INDDS
+SFLMSG                           54       BOOLEAN IN INDDS
+SFLNXTCHG                        52       BOOLEAN IN INDDS
+SLTCOUNTRY                       30       CHARACTER(2)
+STEP01                           67       CHARACTER(3)
+STEP02                           68       CHARACTER(3)
+STEP03                           69       CHARACTER(3)
+UPD                              76       CHARACTER(3) CONSTANT
+USER                             72       CHARACTER(10)
+No errors found in source
+  321 Source records processed
+                               * * * * *  E N D  O F  L I S T I N G  * * * * *
+ 5770WDS V7R5M0  220415 RN        IBM ILE RPG             SAMCO/CUS200             DEMOP      12/15/25 22:55:29        Page      1
+  Command  . . . . . . . . . . . . :   CRTBNDRPG
+    Issued by  . . . . . . . . . . :     BENOIT
+  Program  . . . . . . . . . . . . :   CUS200
+    Library  . . . . . . . . . . . :     SAMCO
+  Text 'description' . . . . . . . :
+  Source stream file   . . . . . . :   /QSYS.LIB/QTEMP.LIB/QSQLTEMP1.FILE/CUS200.MBR
+    CCSID  . . . . . . . . . . . . :     297
+  Target CCSID . . . . . . . . . . :   297
+  Text 'description' . . . . . . . :
+  Last Change  . . . . . . . . . . :   12/15/25  22:55:29
+  Generation severity level  . . . :   10
+  Default activation group . . . . :   *YES
+  Compiler options . . . . . . . . :   *XREF      *GEN       *NOSECLVL  *SHOWCPY
+                                       *EXPDDS    *EXT       *NOSHOWSKP *NOSRCSTMT
+                                       *DEBUGIO   *UNREF     *EVENTF
+  Debugging views  . . . . . . . . :   *ALL
+  Debug encryption key . . . . . . :   *NONE
+  Output . . . . . . . . . . . . . :   *PRINT
+  Optimization level . . . . . . . :   *NONE
+  Source listing indentation . . . :   *NONE
+  Type conversion options  . . . . :   *NONE
+  Sort sequence  . . . . . . . . . :   *JOB
+  Language identifier  . . . . . . :   *JOB
+  Replace program  . . . . . . . . :   *YES
+  User profile . . . . . . . . . . :   *USER
+  Authority  . . . . . . . . . . . :   *LIBCRTAUT
+  Truncate numeric . . . . . . . . :   *YES
+  Fix numeric  . . . . . . . . . . :   *NONE
+  Target release . . . . . . . . . :   V7R5M0
+  Allow null values  . . . . . . . :   *NO
+  Define condition names . . . . . :   *NONE
+  Enable performance collection  . :   *PEP
+  Profiling data . . . . . . . . . :   *NOCOL
+  Licensed Internal Code options . :
+  Generate program interface . . . :   *NO
+  Include directory  . . . . . . . :   includes
+                                   :   QPROTOSRC
+  Preprocessor options . . . . . . :   *NONE
+  Require prototype for export . . :   *NO
+ 5770WDS V7R5M0  220415 RN        IBM ILE RPG             SAMCO/CUS200             DEMOP      12/15/25 22:55:29        Page      2
+Line   <---------------------- Source Specifications ----------------------------><---- Comments ----> Do  Page  Change Src Seq
+Number ....1....+....2....+....3....+....4....+....5....+....6....+....7....+....8....+....9....+...10 Num Line  Date   Id  Number
+                          S o u r c e   L i s t i n g
+     1                                                                                                                      000001
+     2 h dftactgrp(*no) bnddir('SAMPLE')                                                                                    000002
+     3                                                                                                                      000003
+        *--------------------------------------------------------------------*
+        * Compiler Options in Effect:                                        *
+        *--------------------------------------------------------------------*
+        *  Text 'description' . . . . . . . :                                *
+        *                                                                    *
+        *  Generation severity level  . . . :   10                           *
+        *  Default activation group . . . . :   *NO                          *
+        *  Compiler options . . . . . . . . :   *XREF      *GEN              *
+        *                                       *NOSECLVL  *SHOWCPY          *
+        *                                       *EXPDDS    *EXT              *
+        *                                       *NOSHOWSKP *NOSRCSTMT        *
+        *                                       *DEBUGIO   *UNREF            *
+        *                                       *EVENTF                      *
+        *  Optimization level . . . . . . . :   *NONE                        *
+        *  Source listing indentation . . . :   *NONE                        *
+        *  Type conversion options  . . . . :   *NONE                        *
+        *  Sort sequence  . . . . . . . . . :   *JOB                         *
+        *  Language identifier  . . . . . . :   *JOB                         *
+        *  User profile . . . . . . . . . . :   *USER                        *
+        *  Authority  . . . . . . . . . . . :   *LIBCRTAUT                   *
+        *  Truncate numeric . . . . . . . . :   *YES                         *
+        *  Fix numeric  . . . . . . . . . . :   *NONE                        *
+        *  Allow null values  . . . . . . . :   *NO                          *
+        *  Storage model . . .  . . . . . . :   *SNGLVL                      *
+        *  Binding directory from Command . :   *NONE                        *
+        *  Binding directory from Source  . :   SAMPLE                       *
+        *    Library  . . . . . . . . . . . :     *LIBL                      *
+        *  Activation group . . . . . . . . :   *STGMDL                      *
+        *  Enable performance collection  . :   *PEP                         *
+        *  Profiling data . . . . . . . . . :   *NOCOL                       *
+        *  Generate program interface . . . :   *NO                          *
+        *  Require prototype for export . . :   *NO                          *
+        *--------------------------------------------------------------------*
+     4 fcustome2  if   e           k disk    rename(fcust:fcust2)                                                           000004
+        *--------------------------------------------------------------------------------------------*
+        *                               RPG name         External name                               *
+        * File name. . . . . . . . . :  CUSTOME2         SAMCO/CUSTOME2                              *
+        * Record format(s) . . . . . :  FCUST2           FCUST                                       *
+        *--------------------------------------------------------------------------------------------*
+     5 fcustome1  uf a e           k disk                                                                                   000005
+        *--------------------------------------------------------------------------------------------*
+        *                               RPG name         External name                               *
+        * File name. . . . . . . . . :  CUSTOME1         SAMCO/CUSTOME1                              *
+        * Record format(s) . . . . . :  FCUST            FCUST                                       *
+        *--------------------------------------------------------------------------------------------*
+     6 fcus200d   cf   e             workstn                                                                                000006
+     7 F                                     indds(indds)                                                                   000007
+ 5770WDS V7R5M0  220415 RN        IBM ILE RPG             SAMCO/CUS200             DEMOP      12/15/25 22:55:29        Page      3
+Line   <---------------------- Source Specifications ----------------------------><---- Comments ----> Do  Page  Change Src Seq
+Number ....1....+....2....+....3....+....4....+....5....+....6....+....7....+....8....+....9....+...10 Num Line  Date   Id  Number
+     8 F                                     sfile(sfl01:rrn01)                                                             000008
+     9 F                                     Infds(Info)                                                                    000009
+    10                                                                                                                      000010
+    11  * /copy qprotosrc/country                                                                                           000011
+    12  *=============================================                                                                      000012
+    13  * Get COUNTRY NAME                                                                                                  000013
+    14  *=============================================                                                                      000014
+        *--------------------------------------------------------------------------------------------*
+        *                               RPG name         External name                               *
+        * File name. . . . . . . . . :  CUS200D          SAMCO/CUS200D                               *
+        * Record format(s) . . . . . :  SFL01            SFL01                                       *
+        *                               CTL01            CTL01                                       *
+        *                               KEY01            KEY01                                       *
+        *                               FMT02            FMT02                                       *
+        *--------------------------------------------------------------------------------------------*
+    15 DGetCountryName   PR            30A                                                                                  000015
+    16 D COID                           2A    value                                                                         000016
+    17  *=============================================                                                                      000017
+    18  * Get Iso Code alpha-3                                                                                              000018
+    19  *=============================================                                                                      000019
+    20 DGetCountryIso3   PR             3A                                                                                  000020
+    21 D COID                           2A    value                                                                         000021
+    22  *=============================================                                                                      000022
+    23  * Check if country code exist                                                                                       000023
+    24  *=============================================                                                                      000024
+    25 D ExistCountry    PR              n                                                                                  000025
+    26 D COID                           2A    value                                                                         000026
+    27  *=============================================                                                                      000027
+    28  * Select a country code                                                                                             000028
+    29  *=============================================                                                                      000029
+    30 D SltCountry      PR             2a                                                                                  000030
+    31 D COID                           2A                                                                                  000031
+    32  *=============================================                                                                      000032
+    33  * Close COUNTRY                                                                                                     000033
+    34  *=============================================                                                                      000034
+    35 D CloseCOUNTRY    PR                                                                                                 000035
+    36                                                                                                                      000036
+    37 d orders          pr                  extpgm('ORD200')                                                               000037
+    38 d  id                                 like(cuid)                                                                     000038
+    39                                                                                                                      000039
+    40 D indds           ds                                                                                                 000040
+    41 D  help                   1      1n                                                                                  000041
+    42 D  exit                   3      3n                                                                                  000042
+    43 D  prompt                 4      4n                                                                                  000043
+    44 D  refresh                5      5n                                                                                  000044
+    45 D  create                 6      6n                                                                                  000045
+    46 D  cancel                12     12n                                                                                  000046
+    47 D  morekeys              24     24n                                                                                  000047
+    48 D  pagedown              25     25n                                                                                  000048
+    49 D  sflclr                30     30n                                                                                  000049
+    50 D  sfldsp                31     31n                                                                                  000050
+    51 D  sfldspctl             32     32n                                                                                  000051
+    52 D  sflnxtchg             33     33n                                                                                  000052
+    53 D  dspatr_ri             34     34n                                                                                  000053
+ 5770WDS V7R5M0  220415 RN        IBM ILE RPG             SAMCO/CUS200             DEMOP      12/15/25 22:55:29        Page      4
+Line   <---------------------- Source Specifications ----------------------------><---- Comments ----> Do  Page  Change Src Seq
+Number ....1....+....2....+....3....+....4....+....5....+....6....+....7....+....8....+....9....+...10 Num Line  Date   Id  Number
+    54 D  sflmsg                35     35n                                                                                  000054
+    55 D  ErrCountry            40     40n                                                                                  000055
+    56 D  ErrName               41     41n                                                                                  000056
+    57 D  sflend                80     80n                                                                                  000057
+    58                                                                                                                      000058
+    59 D info            ds                                                                                                 000059
+    60 D  lrrn                 378    379i 0                                                                                000060
+    61                                                                                                                      000061
+    62 D rrn01           s              5i 0                                                                                000062
+    63 D rrs01           s              5i 0                                                                                000063
+    64 D err01           s               n                                                                                  000064
+    65                                                                                                                      000065
+    66 D panel           S              3i 0 INZ(1)                                                                         000066
+    67 D step01          S              3    inz(prp)                                                                       000067
+    68 D step02          S              3    inz(prp)                                                                       000068
+    69 D step03          S              3    inz(prp)                                                                       000069
+    70 d savId           s                   like(cuid)                                                                     000070
+    71 d savName         s                   like(custnm)                                                                   000071
+    72 d User            s             10    inz(*user)                                                                     000072
+    73 d count           s              3i 0                                                                                000073
+    74                                                                                                                      000074
+    75 d crt             c                   'CRT'                                                                          000075
+    76 d upd             c                   'UPD'                                                                          000076
+    77 d prp             c                   'prp'                                                                          000077
+    78 d lod             c                   'lod'                                                                          000078
+    79 d dsp             c                   'dsp'                                                                          000079
+    80 d key             c                   'key'                                                                          000080
+    81 d chk             c                   'chk'                                                                          000081
+    82 d chkctl          c                   'chc'                                                                          000082
+    83 d actctl          c                   'acc'                                                                          000083
+    84 d act             c                   'act'                                                                          000084
+    85 d datBlank        c                   d'1940-01-01'                                                                  000085
+    86  /free                                                                                                               000086
+    87   /SET CCSID(*CHAR:*JOBRUNMIX)                                                                                       000087
+    88   // SQL COMMUNICATION AREA                                                //SQL                                     000088
+    89   DCL-DS SQLCA;                                                            //SQL                                     000089
+    90     SQLCAID CHAR(8) INZ(X'0000000000000000');                              //SQL                                     000090
+    91      SQLAID CHAR(8) OVERLAY(SQLCAID);                                      //SQL                                     000091
+    92     SQLCABC INT(10);                                                       //SQL                                     000092
+    93      SQLABC BINDEC(9) OVERLAY(SQLCABC);                                    //SQL                                     000093
+    94     SQLCODE INT(10);                                                       //SQL                                     000094
+    95      SQLCOD BINDEC(9) OVERLAY(SQLCODE);                                    //SQL                                     000095
+    96     SQLERRML INT(5);                                                       //SQL                                     000096
+    97      SQLERL BINDEC(4) OVERLAY(SQLERRML);                                   //SQL                                     000097
+    98     SQLERRMC CHAR(70);                                                     //SQL                                     000098
+    99      SQLERM CHAR(70) OVERLAY(SQLERRMC);                                    //SQL                                     000099
+   100     SQLERRP CHAR(8);                                                       //SQL                                     000100
+   101      SQLERP CHAR(8) OVERLAY(SQLERRP);                                      //SQL                                     000101
+   102     SQLERR CHAR(24);                                                       //SQL                                     000102
+   103      SQLER1 BINDEC(9) OVERLAY(SQLERR:*NEXT);                               //SQL                                     000103
+   104      SQLER2 BINDEC(9) OVERLAY(SQLERR:*NEXT);                               //SQL                                     000104
+   105      SQLER3 BINDEC(9) OVERLAY(SQLERR:*NEXT);                               //SQL                                     000105
+   106      SQLER4 BINDEC(9) OVERLAY(SQLERR:*NEXT);                               //SQL                                     000106
+   107      SQLER5 BINDEC(9) OVERLAY(SQLERR:*NEXT);                               //SQL                                     000107
+   108      SQLER6 BINDEC(9) OVERLAY(SQLERR:*NEXT);                               //SQL                                     000108
+   109      SQLERRD INT(10) DIM(6) OVERLAY(SQLERR);                               //SQL                                     000109
+ 5770WDS V7R5M0  220415 RN        IBM ILE RPG             SAMCO/CUS200             DEMOP      12/15/25 22:55:29        Page      5
+Line   <---------------------- Source Specifications ----------------------------><---- Comments ----> Do  Page  Change Src Seq
+Number ....1....+....2....+....3....+....4....+....5....+....6....+....7....+....8....+....9....+...10 Num Line  Date   Id  Number
+   110     SQLWRN CHAR(11);                                                       //SQL                                     000110
+   111      SQLWN0 CHAR(1) OVERLAY(SQLWRN:*NEXT);                                 //SQL                                     000111
+   112      SQLWN1 CHAR(1) OVERLAY(SQLWRN:*NEXT);                                 //SQL                                     000112
+   113      SQLWN2 CHAR(1) OVERLAY(SQLWRN:*NEXT);                                 //SQL                                     000113
+   114      SQLWN3 CHAR(1) OVERLAY(SQLWRN:*NEXT);                                 //SQL                                     000114
+   115      SQLWN4 CHAR(1) OVERLAY(SQLWRN:*NEXT);                                 //SQL                                     000115
+   116      SQLWN5 CHAR(1) OVERLAY(SQLWRN:*NEXT);                                 //SQL                                     000116
+   117      SQLWN6 CHAR(1) OVERLAY(SQLWRN:*NEXT);                                 //SQL                                     000117
+   118      SQLWN7 CHAR(1) OVERLAY(SQLWRN:*NEXT);                                 //SQL                                     000118
+   119      SQLWN8 CHAR(1) OVERLAY(SQLWRN:*NEXT);                                 //SQL                                     000119
+   120      SQLWN9 CHAR(1) OVERLAY(SQLWRN:*NEXT);                                 //SQL                                     000120
+   121      SQLWNA CHAR(1) OVERLAY(SQLWRN:*NEXT);                                 //SQL                                     000121
+   122      SQLWARN CHAR(1) DIM(11) OVERLAY(SQLWRN);                              //SQL                                     000122
+   123     SQLSTATE CHAR(5);                                                      //SQL                                     000123
+   124      SQLSTT CHAR(5) OVERLAY(SQLSTATE);                                     //SQL                                     000124
+   125   END-DS SQLCA;                                                            //SQL                                     000125
+   126   DCL-PR SQLROUTE_CALL EXTPGM(SQLROUTE);                                   //SQL                                     000126
+   127     CA LIKEDS(SQLCA);                                                      //SQL                                     000127
+   128     *N BINDEC(4) OPTIONS(*NOPASS);                                         //SQL                                     000128
+   129     *N CHAR(1) OPTIONS(*NOPASS);                                           //SQL                                     000129
+   130   END-PR SQLROUTE_CALL;                                                    //SQL                                     000130
+   131   DCL-PR SQLOPEN_CALL EXTPGM(SQLOPEN);                                     //SQL                                     000131
+   132     CA LIKEDS(SQLCA);                                                      //SQL                                     000132
+   133     *N BINDEC(4);                                                          //SQL                                     000133
+   134   END-PR SQLOPEN_CALL;                                                     //SQL                                     000134
+   135   DCL-PR SQLCLSE_CALL EXTPGM(SQLCLSE);                                     //SQL                                     000135
+   136     CA LIKEDS(SQLCA);                                                      //SQL                                     000136
+   137     *N BINDEC(4);                                                          //SQL                                     000137
+   138   END-PR SQLCLSE_CALL;                                                     //SQL                                     000138
+   139   DCL-PR SQLCMIT_CALL EXTPGM(SQLCMIT);                                     //SQL                                     000139
+   140     CA LIKEDS(SQLCA);                                                      //SQL                                     000140
+   141     *N BINDEC(4);                                                          //SQL                                     000141
+   142   END-PR SQLCMIT_CALL;                                                     //SQL                                     000142
+   143   /RESTORE CCSID(*CHAR)                                                                                              000143
+   144   DCL-C SQLROUTE CONST('QSYS/QSQROUTE');                                   //SQL                                     000144
+   145   DCL-C SQLOPEN CONST('QSYS/QSQROUTE');                                    //SQL                                     000145
+   146   DCL-C SQLCLSE CONST('QSYS/QSQLCLSE');                                    //SQL                                     000146
+   147   DCL-C SQLCMIT CONST('QSYS/QSQLCMIT');                                    //SQL                                     000147
+   148   DCL-C SQFRD CONST(2);                                                    //SQL                                     000148
+   149   DCL-C SQFCRT CONST(8);                                                   //SQL                                     000149
+   150   DCL-C SQFOVR CONST(16);                                                  //SQL                                     000150
+   151   DCL-C SQFAPP CONST(32);                                                  //SQL                                     000151
+   152 D                 DS                                                       SET                                       000152
+   153 D  SQL_00000              1      2B 0 INZ(128)                             length of header                          000153
+   154 D  SQL_00001              3      4B 0 INZ(1)                               statement number                          000154
+   155 D  SQL_00002              5      8U 0 INZ(0)                               invocation mark                           000155
+   156 D  SQL_00003              9      9A   INZ('0') CCSID(*JOBRUNMIX)           data is okay                              000156
+   157 D  SQL_00004             10    128A   CCSID(*JOBRUNMIX)                    end of header                             000157
+   158 D  SQL_00005            129    131P 0                                      CUID                                      000158
+   159=IFCUST2                                                                                                             1000001
+        *--------------------------------------------------------------------------------------------*                     1
+        * RPG record format  . . . . :  FCUST2                                                       *                     1
+        * External format  . . . . . :  FCUST : SAMCO/CUSTOME2                                       *                     1
+        *--------------------------------------------------------------------------------------------*                     1
+ 5770WDS V7R5M0  220415 RN        IBM ILE RPG             SAMCO/CUS200             DEMOP      12/15/25 22:55:29        Page      6
+Line   <---------------------- Source Specifications ----------------------------><---- Comments ----> Do  Page  Change Src Seq
+Number ....1....+....2....+....3....+....4....+....5....+....6....+....7....+....8....+....9....+...10 Num Line  Date   Id  Number
+   160=I                             P    1    3 0CUID                            CUSTOMER ID                              1000002
+   161=I                             A    4   33  CUSTNM                          CUSTOMER NAME                            1000003
+   162=I                             A   34   48  CUPHONE                         PHONE NUMBER                             1000004
+   163=I                             A   49   60  CUVAT                           VAT NUMBER                               1000005
+   164=I                             A   61  110  CUMAIL                          ADDRESS MAIL                             1000006
+   165=I                             A  111  160  CULINE1                         ADDRESS LINE                             1000007
+   166=I                             A  161  210  CULINE2                         ADDRESS LINE                             1000008
+   167=I                             A  211  260  CULINE3                         ADDRESS LINE                             1000009
+   168=I                             A  261  270  CUZIP                           ZIP CODE                                 1000010
+   169=I                             A  271  300  CUCITY                          CITY                                     1000011
+   170=I                             A  301  302  CUCOUN                          COUNTRY CODE                             1000012
+   171=I                             P  303  307 2CULIMCRE                        LIMIT CREDIT                             1000013
+   172=I                             P  308  312 2CUCREDIT                        CREDIT                                   1000014
+   173=I                             P  313  317 0CULASTORD                       Last Order Date                          1000015
+   174=I                        *ISO-D  318  327  CUCREA                          CREATION DATE                            1000016
+   175=I                             Z  328  353  CUMOD                           LAST MODIFICATION                        1000017
+   176=I                             A  354  363  CUMODID                         LAS MOD BY                               1000018
+   177=I                             A  364  364  CUDEL                           DELETE CODE X=DELETED                    1000019
+   178=IFCUST                                                                                                              2000001
+        *--------------------------------------------------------------------------------------------*                     2
+        * RPG record format  . . . . :  FCUST                                                        *                     2
+        * External format  . . . . . :  FCUST : SAMCO/CUSTOME1                                       *                     2
+        *--------------------------------------------------------------------------------------------*                     2
+   179=I                             P    1    3 0CUID                            CUSTOMER ID                              2000002
+   180=I                             A    4   33  CUSTNM                          CUSTOMER NAME                            2000003
+   181=I                             A   34   48  CUPHONE                         PHONE NUMBER                             2000004
+   182=I                             A   49   60  CUVAT                           VAT NUMBER                               2000005
+   183=I                             A   61  110  CUMAIL                          ADDRESS MAIL                             2000006
+   184=I                             A  111  160  CULINE1                         ADDRESS LINE                             2000007
+   185=I                             A  161  210  CULINE2                         ADDRESS LINE                             2000008
+   186=I                             A  211  260  CULINE3                         ADDRESS LINE                             2000009
+   187=I                             A  261  270  CUZIP                           ZIP CODE                                 2000010
+   188=I                             A  271  300  CUCITY                          CITY                                     2000011
+   189=I                             A  301  302  CUCOUN                          COUNTRY CODE                             2000012
+   190=I                             P  303  307 2CULIMCRE                        LIMIT CREDIT                             2000013
+   191=I                             P  308  312 2CUCREDIT                        CREDIT                                   2000014
+   192=I                             P  313  317 0CULASTORD                       Last Order Date                          2000015
+   193=I                        *ISO-D  318  327  CUCREA                          CREATION DATE                            2000016
+   194=I                             Z  328  353  CUMOD                           LAST MODIFICATION                        2000017
+   195=I                             A  354  363  CUMODID                         LAS MOD BY                               2000018
+   196=I                             A  364  364  CUDEL                           DELETE CODE X=DELETED                    2000019
+   197=ISFL01                                                                                                              3000001
+        *--------------------------------------------------------------------------------------------*                     3
+        * RPG record format  . . . . :  SFL01                                                        *                     3
+        * External format  . . . . . :  SFL01 : SAMCO/CUS200D                                        *                     3
+        *--------------------------------------------------------------------------------------------*                     3
+   198=I                             S    1    2 0OPT01                                                                    3000002
+   199=I                             S    3    7 0CUID                            CUSTOMER ID                              3000003
+   200=I                             A    8   37  CUSTNM                          CUSTOMER NAME                            3000004
+   201=I                             A   38   67  CUCITY                          CITY                                     3000005
+   202=I                             A   68   68  CUDEL                           DELETE CODE X=DELETED                    3000006
+   203=ICTL01                                                                                                              4000001
+        *--------------------------------------------------------------------------------------------*                     4
+        * RPG record format  . . . . :  CTL01                                                        *                     4
+        * External format  . . . . . :  CTL01 : SAMCO/CUS200D                                        *                     4
+        *--------------------------------------------------------------------------------------------*                     4
+ 5770WDS V7R5M0  220415 RN        IBM ILE RPG             SAMCO/CUS200             DEMOP      12/15/25 22:55:29        Page      7
+Line   <---------------------- Source Specifications ----------------------------><---- Comments ----> Do  Page  Change Src Seq
+Number ....1....+....2....+....3....+....4....+....5....+....6....+....7....+....8....+....9....+...10 Num Line  Date   Id  Number
+   204=I                             S    1    4 0RRB01                                                                    4000002
+   205=I                             A    5   14  POSTO                                                                    4000003
+   206=IKEY01                                                                                                              5000001
+        *--------------------------------------------------------------------------------------------*                     5
+        * RPG record format  . . . . :  KEY01                                                        *                     5
+        * External format  . . . . . :  KEY01 : SAMCO/CUS200D                                        *                     5
+        *--------------------------------------------------------------------------------------------*                     5
+   207=IFMT02                                                                                                              6000001
+        *--------------------------------------------------------------------------------------------*                     6
+        * RPG record format  . . . . :  FMT02                                                        *                     6
+        * External format  . . . . . :  FMT02 : SAMCO/CUS200D                                        *                     6
+        *--------------------------------------------------------------------------------------------*                     6
+   208=I                             A    1   30  CUSTNM                          CUSTOMER NAME                            6000002
+   209=I                             A   31   80  CUMAIL                          ADDRESS MAIL                             6000003
+   210=I                             A   81   95  CUPHONE                         PHONE NUMBER                             6000004
+   211=I                             A   96  107  CUVAT                           VAT NUMBER                               6000005
+   212=I                             A  108  157  CULINE1                         ADDRESS LINE                             6000006
+   213=I                             A  158  207  CULINE2                         ADDRESS LINE                             6000007
+   214=I                             A  208  257  CULINE3                         ADDRESS LINE                             6000008
+   215=I                             A  258  267  CUZIP                           ZIP CODE                                 6000009
+   216=I                             A  268  297  CUCITY                          CITY                                     6000010
+   217=I                             A  298  299  CUCOUN                          COUNTRY CODE                             6000011
+   218=I                             S  300  308 2CULIMCRE                        LIMIT CREDIT                             6000012
+   219=I                        *ISO-D  309  318  LASTORD                                                                  6000013
+   220   select;                                                                                       B01                  000159
+   221   when panel = 1;                                                                               X01                  000160
+   222     exsr pnl01;                                                                                  01                  000161
+   223   when panel = 2;                                                                               X01                  000162
+   224     exsr pnl02;                                                                                  01                  000163
+   225   other;                                                                                        X01                  000164
+   226     exsr pnl00;                                                                                  01                  000165
+   227   endsl;                                                                                        E01                  000166
+   228   //- Subfiles  01 Subroutines --------------------------------------  ---                                           000167
+   229   begsr pnl01;                                                                                                       000168
+   230     select ;                                                                                    B01                  000169
+   231     when step01 = prp ;                                                                         X01                  000170
+   232       exsr s01prp;                                                                               01                  000171
+   233     when step01 = lod ;                                                                         X01                  000172
+   234       exsr s01lod;                                                                               01                  000173
+   235     when step01 = dsp ;                                                                         X01                  000174
+   236       exsr s01dsp;                                                                               01                  000175
+   237     when step01 = key ;                                                                         X01                  000176
+   238       exsr s01key;                                                                               01                  000177
+   239     when step01 = chk ;                                                                         X01                  000178
+   240       exsr s01chk;                                                                               01                  000179
+   241     when step01 = act ;                                                                         X01                  000180
+   242       exsr s01act ;                                                                              01                  000181
+   243     endsl;                                                                                      E01                  000182
+   244   endsr;                                                                                                             000183
+   245   //--- Clear Subfile  ----------------------------------------------------                                          000184
+   246   begsr s01prp;                                                                                                      000185
+   247     RRn01 = 0;                                                                                                       000186
+   248     sflclr = *on;                                                                                                    000187
+   249     write ctl01;                                                                                                     000188
+ 5770WDS V7R5M0  220415 RN        IBM ILE RPG             SAMCO/CUS200             DEMOP      12/15/25 22:55:29        Page      8
+Line   <---------------------- Source Specifications ----------------------------><---- Comments ----> Do  Page  Change Src Seq
+Number ....1....+....2....+....3....+....4....+....5....+....6....+....7....+....8....+....9....+...10 Num Line  Date   Id  Number
+   250     sflclr = *off;                                                                                                   000189
+   251     step01 = lod;                                                                                                    000190
+   252     clear savid;                                                                                                     000191
+   253     savName = posTo;                                                                                                 000192
+   254     clear posTo;                                                                                                     000193
+   255     rrs01 = 0;                                                                                                       000194
+   256   endsr;                                                                                                             000195
+   257   //--- Load Subfile  -----------------------------------------------------                                          000196
+   258   begsr s01lod;                                                                                                      000197
+   259     exsr s01rst;                                                                                                     000198
+   260     RRb01 = RRn01 + 1;                                                                                               000199
+   261     opt01 = 0;                                                                                                       000200
+   262     count = 0;                                                                                                       000201
+   263     read custome2;                                                                                                   000202
+   264     dow not %eof(custome2) and count < 14;                                                      B01                  000203
+   265       RRN01 += 1;                                                                                01                  000204
+   266       count += 1;                                                                                01                  000205
+   267       write sfl01;                                                                               01                  000206
+   268       read custome2;                                                                             01                  000207
+   269     enddo;                                                                                      E01                  000208
+   270     sflend = %eof(custome2);                                                                                         000209
+   271     step01 = dsp;                                                                                                    000210
+   272     exsr s01sav;                                                                                                     000211
+   273   endsr;                                                                                                             000212
+   274   //--- restore last read -------------------------------------------------                                          000213
+   275   begsr s01rst;                                                                                                      000214
+   276     setll (savName:savid)  custome2;                                                                                 000215
+   277     rrn01 = rrs01;                                                                                                   000216
+   278   endsr;                                                                                                             000217
+   279   //--- Save last read -------------------------------------------------                                             000218
+   280   begsr s01sav;                                                                                                      000219
+   281     savid = cuid;                                                                                                    000220
+   282     savName = custNm;                                                                                                000221
+   283     rrs01 = rrn01;                                                                                                   000222
+   284   endsr;                                                                                                             000223
+   285   //--- Display Subfile  --------------------------------------------------                                          000224
+   286   begsr s01dsp;                                                                                                      000225
+   287     sfldspctl = *on;                                                                                                 000226
+   288     sfldsp = RRn01 > 0;                                                                                              000227
+   289                                                                                                                      000228
+   290     write key01;                                                                                                     000229
+   291     exfmt ctl01;                                                                                                     000230
+   292     if LRRN <>0;                                                                                B01                  000231
+   293       RRb01 = LRRN;                                                                              01                  000232
+   294     endif;                                                                                      E01                  000233
+   295     step01 = key;                                                                                                    000234
+   296   endsr;                                                                                                             000235
+   297   //--- Command Keys  -----------------------------------------------------                                          000236
+   298   begsr s01key;                                                                                                      000237
+   299     select;                                                                                     B01                  000238
+   300     when exit;                                                                                  X01                  000239
+   301       panel  = 0;                                                                                01                  000240
+   302       step01 = prp;                                                                              01                  000241
+   303     when cancel;                                                                                X01                  000242
+   304       step01 = prp;                                                                              01                  000243
+   305       panel  = panel  - 1;                                                                       01                  000244
+ 5770WDS V7R5M0  220415 RN        IBM ILE RPG             SAMCO/CUS200             DEMOP      12/15/25 22:55:29        Page      9
+Line   <---------------------- Source Specifications ----------------------------><---- Comments ----> Do  Page  Change Src Seq
+Number ....1....+....2....+....3....+....4....+....5....+....6....+....7....+....8....+....9....+...10 Num Line  Date   Id  Number
+   306     when refresh;                                                                               X01                  000245
+   307       step01 = prp;                                                                              01                  000246
+   308     when create;                                                                                X01                  000247
+   309       step01 = dsp;                                                                              01                  000248
+   310       panel  = 2;                                                                                01                  000249
+   311       step02 = dsp;                                                                              01                  000250
+   312       mode = CRT;                                                                                01                  000251
+   313       reset fcust;                                                                               01                  000252
+   314   //*    exec sql set :Cuid  = NEXT VALUE FOR CusSeq     ;                                                           000253
+   315      SQLER6 = -4;                                                          //SQL 1               01                  000254
+   316      SQLROUTE_CALL(                                                        //SQL                 01                  000255
+   317           SQLCA                                                            //SQL                 01                  000256
+   318         : SQL_00000                                                        //SQL                 01                  000257
+   319      );                                                                    //SQL                 01                  000258
+   320      IF SQL_00003 = '1';                                                   //SQL                B02                  000259
+   321      EVAL CUID = SQL_00005;                                                //SQL                 02                  000260
+   322      ENDIF;                                                                //SQL                E02                  000261
+   323     when pagedown;                                                                              X01                  000262
+   324       step01 = lod;                                                                              01                  000263
+   325     other;                                                                                      X01                  000264
+   326       step01 = chk;                                                                              01                  000265
+   327     endsl;                                                                                      E01                  000266
+   328   endsr;                                                                                                             000267
+   329   //--- Check Subfile  ----------------------------------------------------                                          000268
+   330   begsr s01chk;                                                                                                      000269
+   331     step01 = act;                                                                                                    000270
+   332     err01 = *off;                                                                                                    000271
+   333     sflnxtchg = *on;                                                                                                 000272
+   334     readc(e) sfl01;                                                                                                  000273
+   335     dow not %error and not %eof;                                                                B01                  000274
+   336       if opt01  <> 0 and opt01  <> 2 and opt01  <> 5;                                           B02                  000275
+   337         step01 = dsp;                                                                            02                  000276
+   338         dspatr_ri = *on;                                                                         02                  000277
+   339         sflmsg = *on;                                                                            02                  000278
+   340         if not err01;                                                                           B03                  000279
+   341           rrb01 = rrn01;                                                                         03                  000280
+   342           err01 = *on;                                                                           03                  000281
+   343         endif;                                                                                  E03                  000282
+   344       endif;                                                                                    E02                  000283
+   345       update sfl01;                                                                              01                  000284
+   346       dspatr_ri = *off;                                                                          01                  000285
+   347       readc(e) sfl01;                                                                            01                  000286
+   348     enddo;                                                                                      E01                  000287
+   349     sflnxtchg = *off;                                                                                                000288
+   350   endsr;                                                                                                             000289
+   351   //--- action Subfile  ---------------------------------------------------                                          000290
+   352   begsr s01act;                                                                                                      000291
+   353     readc(e) sfl01;                                                                                                  000292
+   354     select;                                                                                     B01                  000293
+   355     when %error or %eof;                                                                        X01                  000294
+   356       if posto <> ' ';                                                                          B02                  000295
+   357         step01 = prp;                                                                            02                  000296
+   358       else;                                                                                     X02                  000297
+   359         step01 = dsp;                                                                            02                  000298
+   360       endif;                                                                                    E02                  000299
+   361     when opt01 = 2;                                                                             X01                  000300
+ 5770WDS V7R5M0  220415 RN        IBM ILE RPG             SAMCO/CUS200             DEMOP      12/15/25 22:55:29        Page     10
+Line   <---------------------- Source Specifications ----------------------------><---- Comments ----> Do  Page  Change Src Seq
+Number ....1....+....2....+....3....+....4....+....5....+....6....+....7....+....8....+....9....+...10 Num Line  Date   Id  Number
+   362       mode = upd;                                                                                01                  000301
+   363       panel = 2;                                                                                 01                  000302
+   364       step02 = prp;                                                                              01                  000303
+   365       opt01 = 0;                                                                                 01                  000304
+   366       update sfl01;                                                                              01                  000305
+   367     when opt01 = 5;                                                                             X01                  000306
+   368       orders(cuid);                                                                              01                  000307
+   369       opt01 = 0;                                                                                 01                  000308
+   370       update sfl01;                                                                              01                  000309
+   371     other;                                                                                      X01                  000310
+   372                                                                                                                      000311
+   373     endsl;                                                                                      E01                  000312
+   374   endsr;                                                                                                             000313
+   375                                                                                                                      000314
+   376                                                                                                                      000315
+   377   //--- Format 02 Subroutines ------------------------------------     ---                                           000316
+   378   begsr pnl02;                                                                                                       000317
+   379     select ;                                                                                    B01                  000318
+   380     when step02 = prp ;                                                                         X01                  000319
+   381       exsr s02prp;                                                                               01                  000320
+   382     when step02 = dsp ;                                                                         X01                  000321
+   383       exsr s02dsp;                                                                               01                  000322
+   384     when step02 = key ;                                                                         X01                  000323
+   385       exsr s02key;                                                                               01                  000324
+   386     when step02 = chk ;                                                                         X01                  000325
+   387       exsr s02chk;                                                                               01                  000326
+   388     when step02 = act ;                                                                         X01                  000327
+   389       exsr s02act ;                                                                              01                  000328
+   390     endsl;                                                                                      E01                  000329
+   391                                                                                                                      000330
+   392   endsr;                                                                                                             000331
+   393   //--- clear & Load ------------------------------------------------------                                          000332
+   394   begsr S02prp;                                                                                                      000333
+   395     chain cuid custome1;                                                                                             000334
+   396     coname = GetCountryName(CuCoun);                                                                                 000335
+   397     if CULASTORD = 0;                                                                           B01                  000336
+   398       LASTORD = datBlank;                                                                        01                  000337
+   399     else;                                                                                       X01                  000338
+   400       LASTORD  =%date(CULASTORD:*iso);                                                           01                  000339
+   401     ENDIF;                                                                                      E01                  000340
+   402     step02 = dsp;                                                                                                    000341
+   403   endsr;                                                                                                             000342
+   404   //--- Display  ----------------------------------------------------------                                          000343
+   405   begsr S02dsp;                                                                                                      000344
+   406     exfmt fmt02;                                                                                                     000345
+   407     step02 = key;                                                                                                    000346
+   408   endsr;                                                                                                             000347
+   409   //--- command Keys  -----------------------------------------------------                                          000348
+   410   begsr S02key;                                                                                                      000349
+   411     select;                                                                                     B01                  000350
+   412     when exit;                                                                                  X01                  000351
+   413       panel  = 1;                                                                                01                  000352
+   414       step02 = prp;                                                                              01                  000353
+   415     when cancel;                                                                                X01                  000354
+   416       step02 = prp;                                                                              01                  000355
+   417       panel  = panel  - 1;                                                                       01                  000356
+ 5770WDS V7R5M0  220415 RN        IBM ILE RPG             SAMCO/CUS200             DEMOP      12/15/25 22:55:29        Page     11
+Line   <---------------------- Source Specifications ----------------------------><---- Comments ----> Do  Page  Change Src Seq
+Number ....1....+....2....+....3....+....4....+....5....+....6....+....7....+....8....+....9....+...10 Num Line  Date   Id  Number
+   418     when prompt;                                                                                X01                  000357
+   419       step02 = dsp;                                                                              01                  000358
+   420       cucoun = SltCountry(cucoun);                                                               01                  000359
+   421       coname = GetCountryName(CuCoun);                                                           01                  000360
+   422     other;                                                                                      X01                  000361
+   423       step02 = chk;                                                                              01                  000362
+   424     endsl;                                                                                      E01                  000363
+   425   endsr;                                                                                                             000364
+   426   //--- check -------------------------------------------------------------                                          000365
+   427   begsr S02chk;                                                                                                      000366
+   428     step02 = act;                                                                                                    000367
+   429     if not ExistCountry(cucoun);                                                                B01                  000368
+   430       errCountry = *on;                                                                          01                  000369
+   431       step02 = dsp;                                                                              01                  000370
+   432     endif;                                                                                      E01                  000371
+   433     if custnm = *blanks;                                                                        B01                  000372
+   434       errName = *on;                                                                             01                  000373
+   435       step02 = dsp;                                                                              01                  000374
+   436     endif;                                                                                      E01                  000375
+   437                                                                                                                      000376
+   438   endsr;                                                                                                             000377
+   439   //--- Action ------------------------------------------------------------                                          000378
+   440   begsr S02act;                                                                                                      000379
+   441     step02 = prp;                                                                                                    000380
+   442     cumod = %timestamp();                                                                                            000381
+   443     if mode = upd;                                                                              B01                  000382
+   444       update fcust;                                                                              01                  000383
+   445     else;                                                                                       X01                  000384
+   446       write fcust;                                                                               01                  000385
+   447     endif;                                                                                      E01                  000386
+   448     panel = 1;                                                                                                       000387
+   449   endsr;                                                                                                             000388
+   450                                                                                                                      000389
+   451   //--------INITIALIZATION ----------------------------------                                                        000390
+   452   begsr *inzsr;                                                                                                      000391
+   453     cumodid = user;                                                                                                  000392
+   454     cucrea = %date();                                                                                                000393
+   455     LASTORD = datblank;                                                                                              000394
+   456   endsr;                                                                                                             000395
+   457   //--------END SUBROUTINE ----------------------------------                                                        000396
+   458   begsr pnl00;                                                                                                       000397
+   459     *inlr = *on;                                                                                                     000398
+   460   endsr;                                                                                                             000399
+   461  /end-free                                                                                                           000400
+   462                                                                                                                      000401
+   463=OFCUST                                                                                                              7000001
+        *--------------------------------------------------------------------------------------------*                     7
+        * RPG record format  . . . . :  FCUST                                                        *                     7
+        * External format  . . . . . :  FCUST : SAMCO/CUSTOME1                                       *                     7
+        *--------------------------------------------------------------------------------------------*                     7
+   464=O                       CUID                 3P PACK      5,0              CUSTOMER ID                              7000002
+   465=O                       CUSTNM              33A CHAR       30              CUSTOMER NAME                            7000003
+   466=O                       CUPHONE             48A CHAR       15              PHONE NUMBER                             7000004
+   467=O                       CUVAT               60A CHAR       12              VAT NUMBER                               7000005
+   468=O                       CUMAIL             110A CHAR       50              ADDRESS MAIL                             7000006
+   469=O                       CULINE1            160A CHAR       50              ADDRESS LINE                             7000007
+ 5770WDS V7R5M0  220415 RN        IBM ILE RPG             SAMCO/CUS200             DEMOP      12/15/25 22:55:29        Page     12
+Line   <---------------------- Source Specifications ----------------------------><---- Comments ----> Do  Page  Change Src Seq
+Number ....1....+....2....+....3....+....4....+....5....+....6....+....7....+....8....+....9....+...10 Num Line  Date   Id  Number
+   470=O                       CULINE2            210A CHAR       50              ADDRESS LINE                             7000008
+   471=O                       CULINE3            260A CHAR       50              ADDRESS LINE                             7000009
+   472=O                       CUZIP              270A CHAR       10              ZIP CODE                                 7000010
+   473=O                       CUCITY             300A CHAR       30              CITY                                     7000011
+   474=O                       CUCOUN             302A CHAR        2              COUNTRY CODE                             7000012
+   475=O                       CULIMCRE           307P PACK      9,2              LIMIT CREDIT                             7000013
+   476=O                       CUCREDIT           312P PACK      9,2              CREDIT                                   7000014
+   477=O                       CULASTORD          317P PACK      8,0              Last Order Date                          7000015
+   478=O                       CUCREA             327D DATE *ISO- 10              CREATION DATE                            7000016
+   479=O                       CUMOD              353Z TMSP       26              LAST MODIFICATION                        7000017
+   480=O                       CUMODID            363A CHAR       10              LAS MOD BY                               7000018
+   481=O                       CUDEL              364A CHAR        1              DELETE CODE X=DELETED                    7000019
+   482=OSFL01                                                                                                              8000001
+        *--------------------------------------------------------------------------------------------*                     8
+        * RPG record format  . . . . :  SFL01                                                        *                     8
+        * External format  . . . . . :  SFL01 : SAMCO/CUS200D                                        *                     8
+        *--------------------------------------------------------------------------------------------*                     8
+   483=O                       OPT01                2S ZONE      2,0                                                       8000002
+   484=O                       CUID                 7S ZONE      5,0              CUSTOMER ID                              8000003
+   485=O                       CUSTNM              37A CHAR       30              CUSTOMER NAME                            8000004
+   486=O                       CUCITY              67A CHAR       30              CITY                                     8000005
+   487=O                       CUDEL               68A CHAR        1              DELETE CODE X=DELETED                    8000006
+   488=OCTL01                                                                                                              9000001
+        *--------------------------------------------------------------------------------------------*                     9
+        * RPG record format  . . . . :  CTL01                                                        *                     9
+        * External format  . . . . . :  CTL01 : SAMCO/CUS200D                                        *                     9
+        *--------------------------------------------------------------------------------------------*                     9
+   489=O                       RRB01                4S ZONE      4,0                                                       9000002
+   490=O                       POSTO               14A CHAR       10                                                       9000003
+   491=OKEY01                                                                                                             10000001
+        *--------------------------------------------------------------------------------------------*                    10
+        * RPG record format  . . . . :  KEY01                                                        *                    10
+        * External format  . . . . . :  KEY01 : SAMCO/CUS200D                                        *                    10
+        *--------------------------------------------------------------------------------------------*                    10
+   492=OFMT02                                                                                                             11000001
+        *--------------------------------------------------------------------------------------------*                    11
+        * RPG record format  . . . . :  FMT02                                                        *                    11
+        * External format  . . . . . :  FMT02 : SAMCO/CUS200D                                        *                    11
+        *--------------------------------------------------------------------------------------------*                    11
+   493=O                       CUID                 5S ZONE      5,0              CUSTOMER ID                             11000002
+   494=O                       CUSTNM              35A CHAR       30              CUSTOMER NAME                           11000003
+   495=O                       CUMAIL              85A CHAR       50              ADDRESS MAIL                            11000004
+   496=O                       CUPHONE            100A CHAR       15              PHONE NUMBER                            11000005
+   497=O                       CUVAT              112A CHAR       12              VAT NUMBER                              11000006
+   498=O                       CULINE1            162A CHAR       50              ADDRESS LINE                            11000007
+   499=O                       CULINE2            212A CHAR       50              ADDRESS LINE                            11000008
+   500=O                       CULINE3            262A CHAR       50              ADDRESS LINE                            11000009
+   501=O                       CUZIP              272A CHAR       10              ZIP CODE                                11000010
+   502=O                       CUCITY             302A CHAR       30              CITY                                    11000011
+   503=O                       CUCOUN             304A CHAR        2              COUNTRY CODE                            11000012
+   504=O                       CULIMCRE           313S ZONE      9,2              LIMIT CREDIT                            11000013
+   505=O                       CUCREDIT           322S ZONE      9,2              CREDIT                                  11000014
+   506=O                       CONAME             352A CHAR       30                                                      11000015
+   507=O                       MODE               355A CHAR        3                                                      11000016
+   508=O                       LASTORD            365D DATE *ISO- 10                                                      11000017
+       * * * * *   E N D   O F   S O U R C E   * * * * *
+ 5770WDS V7R5M0  220415 RN        IBM ILE RPG             SAMCO/CUS200             DEMOP      12/15/25 22:55:29        Page     13
+Line   <---------------------- Source Specifications ----------------------------><---- Comments ----> Do  Page  Change Src Seq
+Number ....1....+....2....+....3....+....4....+....5....+....6....+....7....+....8....+....9....+...10 Num Line  Date   Id  Number
+ 5770WDS V7R5M0  220415 RN        IBM ILE RPG             SAMCO/CUS200             DEMOP      12/15/25 22:55:29        Page     14
+          A d d i t i o n a l   D i a g n o s t i c   M e s s a g e s
+ Msg id  Sv Number Seq     Message text
+*RNF7089 00      6 000006  RPG provides Separate-Indicator area for file CUS200D.
+*RNF7066 00      4 000004  Record-Format FCUST2 not used for input or output.
+ * * * * *   E N D   O F   A D D I T I O N A L   D I A G N O S T I C   M E S S A G E S   * * * * *
+                 O u t p u t   B u f f e r   P o s i t i o n s
+Line   Start End   Field or Constant
+Number Pos   Pos
+   464     1     3 CUID
+   465     4    33 CUSTNM
+   466    34    48 CUPHONE
+   467    49    60 CUVAT
+   468    61   110 CUMAIL
+   469   111   160 CULINE1
+   470   161   210 CULINE2
+   471   211   260 CULINE3
+   472   261   270 CUZIP
+   473   271   300 CUCITY
+   474   301   302 CUCOUN
+   475   303   307 CULIMCRE
+   476   308   312 CUCREDIT
+   477   313   317 CULASTORD
+   478   318   327 CUCREA
+   479   328   353 CUMOD
+   480   354   363 CUMODID
+   481   364   364 CUDEL
+   464     1     3 CUID
+   465     4    33 CUSTNM
+   466    34    48 CUPHONE
+   467    49    60 CUVAT
+   468    61   110 CUMAIL
+   469   111   160 CULINE1
+   470   161   210 CULINE2
+   471   211   260 CULINE3
+   472   261   270 CUZIP
+   473   271   300 CUCITY
+   474   301   302 CUCOUN
+   475   303   307 CULIMCRE
+   476   308   312 CUCREDIT
+   477   313   317 CULASTORD
+   478   318   327 CUCREA
+   479   328   353 CUMOD
+   480   354   363 CUMODID
+   481   364   364 CUDEL
+   483     1     2 OPT01
+   484     3     7 CUID
+   485     8    37 CUSTNM
+   486    38    67 CUCITY
+   487    68    68 CUDEL
+   483     1     2 OPT01
+   484     3     7 CUID
+   485     8    37 CUSTNM
+ 5770WDS V7R5M0  220415 RN        IBM ILE RPG             SAMCO/CUS200             DEMOP      12/15/25 22:55:29        Page     15
+   486    38    67 CUCITY
+   487    68    68 CUDEL
+   489     1     4 RRB01
+   490     5    14 POSTO
+   493     1     5 CUID
+   494     6    35 CUSTNM
+   495    36    85 CUMAIL
+   496    86   100 CUPHONE
+   497   101   112 CUVAT
+   498   113   162 CULINE1
+   499   163   212 CULINE2
+   500   213   262 CULINE3
+   501   263   272 CUZIP
+   502   273   302 CUCITY
+   503   303   304 CUCOUN
+   504   305   313 CULIMCRE
+   505   314   322 CUCREDIT
+   506   323   352 CONAME
+   507   353   355 MODE
+   508   356   365 LASTORD
+ * * * * *   E N D   O F   O U T P U T   B U F F E R   P O S I T I O N   *  * * * *
+ 5770WDS V7R5M0  220415 RN        IBM ILE RPG             SAMCO/CUS200             DEMOP      12/15/25 22:55:29        Page     16
+                    K e y   F i e l d   I n f o r m a t i o n
+         File           Internal    External
+           Record       field name  field name  Attributes
+      2  CUSTOME1
+           FCUST
+                        CUID                    PACK      5,0 SIGNED
+      1  CUSTOME2
+           FCUST2 is the RPG name of the external format FCUST.
+                        CUSTNM                  CHAR       30
+                        CUID                    PACK      5,0 SIGNED
+ * * * * *   E N D   O F   K E Y   F I E L D   I N F O R M A T I O N   * * * * *
+ 5770WDS V7R5M0  220415 RN        IBM ILE RPG             SAMCO/CUS200             DEMOP      12/15/25 22:55:29        Page     17
+                          C r o s s   R e f e r e n c e
+      File and Record References:
+         File              Device             References (D=Defined)
+           Record
+         CUSTOME1          DISK                    5D    395
+           FCUST                                   5D    178     313M    444
+                                                 446     463
+         CUSTOME2          DISK                    4D    263     264     268
+                                                 270     276
+           FCUST2                                  4     159
+         CUS200D           WORKSTN                 6D
+           SFL01                                   6D    197     267     334
+                                                 345     347     353     366
+                                                 370     482
+           CTL01                                   6D    203     249     291
+                                                 488
+           KEY01                                   6D    206     290     491
+           FMT02                                   6D    207     406     492
+      Global Field References:
+         Field             Attributes         References (D=Defined M=Modified)
+         *INLR             N(1)                  459M
+         *INZSR            BEGSR                 452D
+         ACT               CONST                  84D    241     331     388
+                                                 428
+*RNF7031 ACTCTL            CONST                  83D
+         CANCEL            N(1)                   46D    303     415
+         CHK               CONST                  81D    239     326     386
+                                                 423
+*RNF7031 CHKCTL            CONST                  82D
+*RNF7031 CLOSECOUNTRY      PROTOTYPE              35D
+         CONAME            A(30)                 396M    421M    506
+         COUNT             I(3,0)                 73D    262M    264     266M
+         CREATE            N(1)                   45D    308
+         CRT               CONST                  75D    312
+         CUCITY            A(30)                 169M    188M    201M    216M
+                                                 473     486     502
+         CUCOUN            A(2)                  170M    189M    217M    396
+                                                 420M    420     421     429
+                                                 474     503
+         CUCREA            D(10*ISO-)            174M    193M    454M    478
+         CUCREDIT          P(9,2)                172M    191M    476     505
+         CUDEL             A(1)                  177M    196M    202M    481
+                                                 487
+         CUID              P(5,0)                 38      70     160M    179M
+                                                 199M    281     321M    368
+                                                 395     464     484     493
+         CULASTORD         P(8,0)                173M    192M    397     400
+                                                 477
+         CULIMCRE          P(9,2)                171M    190M    218M    475
+                                                 504
+         CULINE1           A(50)                 165M    184M    212M    469
+                                                 498
+         CULINE2           A(50)                 166M    185M    213M    470
+                                                 499
+ 5770WDS V7R5M0  220415 RN        IBM ILE RPG             SAMCO/CUS200             DEMOP      12/15/25 22:55:29        Page     18
+         CULINE3           A(50)                 167M    186M    214M    471
+                                                 500
+         CUMAIL            A(50)                 164M    183M    209M    468
+                                                 495
+         CUMOD             Z(26)                 175M    194M    442M    479
+         CUMODID           A(10)                 176M    195M    453M    480
+         CUPHONE           A(15)                 162M    181M    210M    466
+                                                 496
+         CUSTNM            A(30)                  71     161M    180M    200M
+                                                 208M    282     433     465
+                                                 485     494
+         CUVAT             A(12)                 163M    182M    211M    467
+                                                 497
+         CUZIP             A(10)                 168M    187M    215M    472
+                                                 501
+         DATBLANK          CONST                  85D    398     455
+         DSP               CONST                  79D    235     271     309
+                                                 311     337     359     382
+                                                 402     419     431     435
+         DSPATR_RI         N(1)                   53D    338M    346M
+         ERRCOUNTRY        N(1)                   55D    430M
+         ERRNAME           N(1)                   56D    434M
+         ERR01             N(1)                   64D    332M    340     342M
+         EXISTCOUNTRY      N(1)                   25D    429
+                           PROTOTYPE
+         EXIT              N(1)                   42D    300     412
+*RNF7031 GETCOUNTRYISO3    A(3)                   20D
+                           PROTOTYPE
+         GETCOUNTRYNAME    A(30)                  15D    396     421
+                           PROTOTYPE
+*RNF7031 HELP              N(1)                   41D
+         INDDS             DS(99)                  7      40D
+         INFO              DS(379)                 9      59D
+         KEY               CONST                  80D    237     295     384
+                                                 407
+         LASTORD           D(10*ISO-)            219M    398M    400M    455M
+                                                 508
+         LOD               CONST                  78D    233     251     324
+         LRRN              I(5,0)                 60D    292     293
+         MODE              A(3)                  312M    362M    443     507
+*RNF7031 MOREKEYS          N(1)                   47D
+         OPT01             P(2,0)                198M    261M    336     336
+                                                 336     361     365M    367
+                                                 369M    483
+         ORDERS            PROTOTYPE              37D    368M
+         PAGEDOWN          N(1)                   48D    323
+         PANEL             I(3,0)                 66D    221     223     301M
+                                                 305M    305     310M    363M
+                                                 413M    417M    417     448M
+         PNL00             BEGSR                 226     458D
+         PNL01             BEGSR                 222     229D
+         PNL02             BEGSR                 224     378D
+         POSTO             A(10)                 205M    253     254M    356
+                                                 490
+         PROMPT            N(1)                   43D    418
+         PRP               CONST                  67      68      69      77D
+                                                 231     302     304     307
+                                                 357     364     380     414
+ 5770WDS V7R5M0  220415 RN        IBM ILE RPG             SAMCO/CUS200             DEMOP      12/15/25 22:55:29        Page     19
+                                                 416     441
+         REFRESH           N(1)                   44D    306
+         RRB01             P(4,0)                204M    260M    293M    341M
+                                                 489
+         RRN01             I(5,0)                  8      62D    247M    260
+                                                 265M    277M    283     288
+                                                 341
+         RRS01             I(5,0)                 63D    255M    277     283M
+         SAVID             P(5,0)                 70D    252M    276     281M
+         SAVNAME           A(30)                  71D    253M    276     282M
+         SFLCLR            N(1)                   49D    248M    250M
+         SFLDSP            N(1)                   50D    288M
+         SFLDSPCTL         N(1)                   51D    287M
+         SFLEND            N(1)                   57D    270M
+         SFLMSG            N(1)                   54D    339M
+         SFLNXTCHG         N(1)                   52D    333M    349M
+         SLTCOUNTRY        A(2)                   30D    420
+                           PROTOTYPE
+*RNF7031 SQFAPP            CONST                 151D
+*RNF7031 SQFCRT            CONST                 149D
+*RNF7031 SQFOVR            CONST                 150D
+*RNF7031 SQFRD             CONST                 148D
+         SQL_00000         B(4,0)                153D    318
+*RNF7031 SQL_00001         B(4,0)                154D
+*RNF7031 SQL_00002         U(10,0)               155D
+         SQL_00003         A(1)                  156D    320
+*RNF7031 SQL_00004         A(119)                157D
+         SQL_00005         P(5,0)                158D    321
+*RNF7031 SQLABC            B(9,0)                 93D
+*RNF7031 SQLAID            A(8)                   91D
+         SQLCA             DS(136)                89D    127     132     136
+                                                 140     317
+         SQLCABC           I(10,0)                92D     93
+         SQLCAID           A(8)                   90D     91
+         SQLCLSE           CONST                 135     146D
+*RNF7031 SQLCLSE_CALL      PROTOTYPE             135D
+         SQLCMIT           CONST                 139     147D
+*RNF7031 SQLCMIT_CALL      PROTOTYPE             139D
+*RNF7031 SQLCOD            B(9,0)                 95D
+         SQLCODE           I(10,0)                94D     95
+*RNF7031 SQLERL            B(4,0)                 97D
+*RNF7031 SQLERM            A(70)                  99D
+*RNF7031 SQLERP            A(8)                  101D
+         SQLERR            A(24)                 102D    103     104     105
+                                                 106     107     108     109
+*RNF7031 SQLERRD(6)        I(10,0)               109D
+         SQLERRMC          A(70)                  98D     99
+         SQLERRML          I(5,0)                 96D     97
+         SQLERRP           A(8)                  100D    101
+*RNF7031 SQLER1            B(9,0)                103D
+*RNF7031 SQLER2            B(9,0)                104D
+*RNF7031 SQLER3            B(9,0)                105D
+*RNF7031 SQLER4            B(9,0)                106D
+*RNF7031 SQLER5            B(9,0)                107D
+         SQLER6            B(9,0)                108D    315M
+         SQLOPEN           CONST                 131     145D
+*RNF7031 SQLOPEN_CALL      PROTOTYPE             131D
+         SQLROUTE          CONST                 126     144D
+ 5770WDS V7R5M0  220415 RN        IBM ILE RPG             SAMCO/CUS200             DEMOP      12/15/25 22:55:29        Page     20
+         SQLROUTE_CALL     PROTOTYPE             126D    316M
+         SQLSTATE          A(5)                  123D    124
+*RNF7031 SQLSTT            A(5)                  124D
+*RNF7031 SQLWARN(11)       A(1)                  122D
+*RNF7031 SQLWNA            A(1)                  121D
+*RNF7031 SQLWN0            A(1)                  111D
+*RNF7031 SQLWN1            A(1)                  112D
+*RNF7031 SQLWN2            A(1)                  113D
+*RNF7031 SQLWN3            A(1)                  114D
+*RNF7031 SQLWN4            A(1)                  115D
+*RNF7031 SQLWN5            A(1)                  116D
+*RNF7031 SQLWN6            A(1)                  117D
+*RNF7031 SQLWN7            A(1)                  118D
+*RNF7031 SQLWN8            A(1)                  119D
+*RNF7031 SQLWN9            A(1)                  120D
+         SQLWRN            A(11)                 110D    111     112     113
+                                                 114     115     116     117
+                                                 118     119     120     121
+                                                 122
+         STEP01            A(3)                   67D    231     233     235
+                                                 237     239     241     251M
+                                                 271M    295M    302M    304M
+                                                 307M    309M    324M    326M
+                                                 331M    337M    357M    359M
+         STEP02            A(3)                   68D    311M    364M    380
+                                                 382     384     386     388
+                                                 402M    407M    414M    416M
+                                                 419M    423M    428M    431M
+                                                 435M    441M
+*RNF7031 STEP03            A(3)                   69D
+         S01ACT            BEGSR                 242     352D
+         S01CHK            BEGSR                 240     330D
+         S01DSP            BEGSR                 236     286D
+         S01KEY            BEGSR                 238     298D
+         S01LOD            BEGSR                 234     258D
+         S01PRP            BEGSR                 232     246D
+         S01RST            BEGSR                 259     275D
+         S01SAV            BEGSR                 272     280D
+         S02ACT            BEGSR                 389     440D
+         S02CHK            BEGSR                 387     427D
+         S02DSP            BEGSR                 383     405D
+         S02KEY            BEGSR                 385     410D
+         S02PRP            BEGSR                 381     394D
+         UPD               CONST                  76D    362     443
+         USER              A(10)                  72D    453
+      Indicator References:
+         Indicator                            References (D=Defined M=Modified)
+         LR                                      459M
+       * * * * *   E N D   O F   C R O S S   R E F E R E N C E   * * * * *
+ 5770WDS V7R5M0  220415 RN        IBM ILE RPG             SAMCO/CUS200             DEMOP      12/15/25 22:55:29        Page     21
+                      E x t e r n a l   R e f e r e n c e s
+      Statically bound procedures:
+         Procedure                            References
+         SLTCOUNTRY                               30     420
+         EXISTCOUNTRY                             25     429
+         CLOSECOUNTRY                             35
+         GETCOUNTRYNAME                           15     396     421
+         GETCOUNTRYISO3                           20
+      Imported fields:
+         Field             Attributes         Defined
+         No references in the source.
+      Exported fields:
+         Field             Attributes         Defined
+         No references in the source.
+   * * * * *   E N D   O F   E X T E R N A L   R E F E R E N C E S   * * * * *
+ 5770WDS V7R5M0  220415 RN        IBM ILE RPG             SAMCO/CUS200             DEMOP      12/15/25 22:55:29        Page     22
+                          M e s s a g e   S u m m a r y
+ Msg id  Sv Number Message text
+*RNF7031 00     42 The name or indicator is not referenced.
+*RNF7066 00      1 Record-Format name of Externally-Described file is not used.
+*RNF7089 00      1 RPG provides Separate-Indicator area for file.
+       * * * * *   E N D   O F   M E S S A G E   S U M M A R Y   * * * * *
+ 5770WDS V7R5M0  220415 RN        IBM ILE RPG             SAMCO/CUS200             DEMOP      12/15/25 22:55:29        Page     23
+                            F i n a l   S u m m a r y
+  Message Totals:
+    Information  (00) . . . . . . . :       44
+    Warning      (10) . . . . . . . :        0
+    Error        (20) . . . . . . . :        0
+    Severe Error (30+)  . . . . . . :        0
+    ---------------------------------  -------
+    Total . . . . . . . . . . . . . :       44
+  Source Totals:
+    Records . . . . . . . . . . . . :      508
+    Specifications  . . . . . . . . :      452
+    Data records  . . . . . . . . . :        0
+    Comments  . . . . . . . . . . . :       35
+         * * * * *   E N D   O F   F I N A L   S U M M A R Y   * * * * *
+                 B i n d   D i a g n o s t i c   M e s s a g e s
+Errors were found during the binding step. See the job log for more information.
+ * * * * *   E N D   O F   B I N D   D I A G N O S T I C   M E S S A G E S    * * * * *
+Program CUS200 in library SAMCO not created.
+          * * * * *   E N D   O F   C O M P I L A T I O N   * * * * *
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
