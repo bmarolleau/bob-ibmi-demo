@@ -89,17 +89,17 @@ Dcl-Proc ListAllArticles Export;
     DoU SQLCODE <> 0 Or i > 1000;  // Max 1000 articles
       Exec SQL
         FETCH C1 INTO
-          :response.articleData(i).id,
-          :response.articleData(i).description,
-          :response.articleData(i).familyCode,
-          :response.articleData(i).familyDescription,
-          :response.articleData(i).vatCode,
-          :response.articleData(i).vatRate,
-          :response.articleData(i).salePrice,
-          :response.articleData(i).warehousePrice,
-          :response.articleData(i).stock,
-          :response.articleData(i).minimumQuantity,
-          :response.articleData(i).deleted;
+          :response:articleData(i):id,
+          :response:articleData(i):description,
+          :response:articleData(i):familyCode,
+          :response:articleData(i):familyDescription,
+          :response:articleData(i):vatCode,
+          :response:articleData(i):vatRate,
+          :response:articleData(i):salePrice,
+          :response:articleData(i):warehousePrice,
+          :response:articleData(i):stock,
+          :response:articleData(i):minimumQuantity,
+          :response:articleData(i):deleted;
 
       If SQLCODE = 0;
         i += 1;
