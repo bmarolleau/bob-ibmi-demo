@@ -11,8 +11,8 @@ Ctl-Opt NoMain;
 Ctl-Opt DatFmt(*ISO);
 Ctl-Opt TimFmt(*ISO);
 
-// Copy field definitions
-/Copy QPROTOSRC,ARTICLE
+// Copy field definitions from IFS
+/copy QPROTOSRC/ARTICLE
 
 // Data structures for JSON response
 Dcl-Ds ArticleResponse Qualified Template;
@@ -29,7 +29,7 @@ Dcl-Ds ArticleListResponse Qualified Template;
   pageSize Int(10);
   totalPages Int(10);
   hasMore Ind;
-  articles LikeDs(ArticleData) Dim(100);
+  articleList LikeDs(ArticleData) Dim(100);
   articleCount Int(10);
 End-Ds;
 
@@ -242,27 +242,27 @@ Dcl-Proc ListArticles Export;
     DoU SQLCODE <> 0 Or i > pageSize;
       Exec SQL
         FETCH C1 INTO
-          :response.articles(i).id,
-          :response.articles(i).description,
-          :response.articles(i).familyCode,
-          :response.articles(i).familyDescription,
-          :response.articles(i).vatCode,
-          :response.articles(i).vatRate,
-          :response.articles(i).vatDescription,
-          :response.articles(i).salePrice,
-          :response.articles(i).warehousePrice,
-          :response.articles(i).stock,
-          :response.articles(i).minimumQuantity,
-          :response.articles(i).deleted,
-          :response.articles(i).createdDate,
-          :response.articles(i).modifiedDate,
-          :response.articles(i).modifiedUser;
+          :response.articleList(i).id,
+          :response.articleList(i).description,
+          :response.articleList(i).familyCode,
+          :response.articleList(i).familyDescription,
+          :response.articleList(i).vatCode,
+          :response.articleList(i).vatRate,
+          :response.articleList(i).vatDescription,
+          :response.articleList(i).salePrice,
+          :response.articleList(i).warehousePrice,
+          :response.articleList(i).stock,
+          :response.articleList(i).minimumQuantity,
+          :response.articleList(i).deleted,
+          :response.articleList(i).createdDate,
+          :response.articleList(i).modifiedDate,
+          :response.articleList(i).modifiedUser;
 
       If SQLCODE = 0;
         // Calculate price with VAT
-        response.articles(i).priceWithVAT = 
-          response.articles(i).salePrice * 
-          (1 + response.articles(i).vatRate / 100);
+        response.articleList(i).priceWithVAT =
+          response.articleList(i).salePrice *
+          (1 + response.articleList(i).vatRate / 100);
         i += 1;
       EndIf;
     EndDo;
@@ -349,17 +349,17 @@ Dcl-Proc BuildListJSON;
       json += ',';
     EndIf;
     json += '{';
-    json += '"id":"' + %Trim(response.articles(i).id) + '",';
-    json += '"description":"' + %Trim(response.articles(i).description) + '",';
-    json += '"familyCode":"' + %Trim(response.articles(i).familyCode) + '",';
-    json += '"familyDescription":"' + %Trim(response.articles(i).familyDescription) + '",';
-    json += '"vatCode":"' + %Trim(response.articles(i).vatCode) + '",';
-    json += '"vatRate":' + %Char(response.articles(i).vatRate) + ',';
-    json += '"salePrice":' + %Char(response.articles(i).salePrice) + ',';
-    json += '"warehousePrice":' + %Char(response.articles(i).warehousePrice) + ',';
-    json += '"stock":' + %Char(response.articles(i).stock) + ',';
-    json += '"minimumQuantity":' + %Char(response.articles(i).minimumQuantity) + ',';
-    json += '"deleted":"' + response.articles(i).deleted + '"';
+    json += '"id":"' + %Trim(response.articleList(i).id) + '",';
+    json += '"description":"' + %Trim(response.articleList(i).description) + '",';
+    json += '"familyCode":"' + %Trim(response.articleList(i).familyCode) + '",';
+    json += '"familyDescription":"' + %Trim(response.articleList(i).familyDescription) + '",';
+    json += '"vatCode":"' + %Trim(response.articleList(i).vatCode) + '",';
+    json += '"vatRate":' + %Char(response.articleList(i).vatRate) + ',';
+    json += '"salePrice":' + %Char(response.articleList(i).salePrice) + ',';
+    json += '"warehousePrice":' + %Char(response.articleList(i).warehousePrice) + ',';
+    json += '"stock":' + %Char(response.articleList(i).stock) + ',';
+    json += '"minimumQuantity":' + %Char(response.articleList(i).minimumQuantity) + ',';
+    json += '"deleted":"' + response.articleList(i).deleted + '"';
     json += '}';
   EndFor;
 
