@@ -1,4 +1,3 @@
-**FREE
 //==============================================================================
 // Program: ART400 - Article REST API Service Program Module
 // Description: Simple REST API to list all articles
