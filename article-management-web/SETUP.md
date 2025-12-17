@@ -121,3 +121,100 @@ server: {
 ## Next Steps
 
 1. ✅ **Frontend is running** - You can now develop the UI
+
+2. 🔧 **Implement Backend APIs** - Follow the modernization plan to create RPG Service Programs
+3. 🧪 **Test Integration** - Verify frontend connects to backend
+4. 🚀 **Deploy** - Build and deploy to production
+
+## Quick Commands Reference
+
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
+
+# Type checking
+npm run type-check
+
+# Linting
+npm run lint
+```
+
+## Development Workflow
+
+1. **Start the dev server**: `npm run dev`
+2. **Make changes** to components in `src/`
+3. **See changes instantly** in the browser (hot reload)
+4. **Test API integration** with your backend
+5. **Build for production** when ready: `npm run build`
+
+## File Structure Quick Reference
+
+```
+src/
+├── components/          # Reusable UI components
+│   ├── ArticleList.tsx     # List view with table
+│   ├── ArticleForm.tsx     # Create/Edit form
+│   └── ArticleInfo.tsx     # Extended info view
+├── pages/              # Page-level components
+│   └── ArticleManagement.tsx  # Main orchestrator
+├── services/           # API integration
+│   ├── api.config.ts      # Endpoints configuration
+│   ├── api.client.ts      # HTTP client
+│   └── article.service.ts # Business logic
+├── types/              # TypeScript definitions
+│   └── article.types.ts   # All type definitions
+└── styles/             # SCSS styles
+    └── App.scss           # Main styles
+```
+
+## Environment Variables
+
+Create a `.env` file with:
+
+```env
+# Required: Backend API URL
+VITE_API_BASE_URL=http://your-ibm-i-server:8080/api
+
+# Optional: Application title
+VITE_APP_TITLE=Article Management System
+```
+
+## Browser Support
+
+- Chrome/Edge: Latest 2 versions
+- Firefox: Latest 2 versions
+- Safari: Latest 2 versions
+
+## Performance Tips
+
+- Use production build for deployment (`npm run build`)
+- Enable gzip compression on your web server
+- Use CDN for static assets if possible
+- Monitor bundle size with `npm run build -- --analyze`
+
+## Security Notes
+
+- Never commit `.env` files with real credentials
+- Use HTTPS in production
+- Implement proper authentication/authorization
+- Validate all user inputs on the backend
+
+## Getting Help
+
+1. Check the main [README.md](README.md) for detailed documentation
+2. Review the [modernization plan](../modernization-plan/README.md)
+3. Check browser console for error messages
+4. Verify API endpoints are accessible
+
+---
+
+**Ready to start? Run `npm run dev` and open http://localhost:3000** 🎉
