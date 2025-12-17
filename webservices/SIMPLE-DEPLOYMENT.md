@@ -31,7 +31,7 @@ CPYFRMSTMF FROMSTMF('/home/benoit/projects/bob-ibmi-demo/QSRVSRC/FARTICLEAPI.BND
            MBROPT(*REPLACE)
 
 # Create service program
-CRTSRVPGM SRVPGM(SAMCO/FARTICLEAPI) +
+CRTSRVPGM SRVPGM(SAMCO/FARTICLAPI) +
           MODULE(SAMCO/ART400) +
           EXPORT(*SRCFILE) +
           SRCFILE(SAMCO/QSRVSRC) +
@@ -40,7 +40,7 @@ CRTSRVPGM SRVPGM(SAMCO/FARTICLEAPI) +
           REPLACE(*YES)
 
 # Verify
-DSPSRVPGM SRVPGM(SAMCO/FARTICLEAPI) DETAIL(*EXPORT)
+DSPSRVPGM SRVPGM(SAMCO/FARTICLAPI) DETAIL(*EXPORT)
 ```
 
 Expected export: **LISTALLARTICLES**
@@ -58,7 +58,7 @@ Expected export: **LISTALLARTICLES**
 ```
 Service Name:       ListAllArticles
 Library:            SAMCO
-Service Program:    FARTICLEAPI
+Service Program:    FARTICLAPI
 Procedure:          LISTALLARTICLES
 Description:        Get all articles
 

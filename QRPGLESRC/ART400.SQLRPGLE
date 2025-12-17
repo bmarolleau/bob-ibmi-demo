@@ -7,9 +7,10 @@
 // Date: 2025-12-17
 //==============================================================================
 
-Ctl-Opt NoMain;
+Ctl-Opt NoMain PGMINFO(*PCML : *MODULE : *DCLCASE);
 Ctl-Opt DatFmt(*ISO);
 Ctl-Opt TimFmt(*ISO);
+
 
 // Copy field definitions from IFS
 /copy QPROTOSRC/ARTICLE
