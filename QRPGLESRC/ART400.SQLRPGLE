@@ -55,6 +55,19 @@ Dcl-Proc ListAllArticles Export;
 
   Dcl-Ds response LikeDs(ArticleListResponse);
   Dcl-S i Int(10);
+  
+  // Temporary variables for SQL FETCH
+  Dcl-S tempId Char(6);
+  Dcl-S tempDesc Char(50);
+  Dcl-S tempFamCode Char(3);
+  Dcl-S tempFamDesc Char(50);
+  Dcl-S tempVatCode Char(1);
+  Dcl-S tempVatRate Packed(4:2);
+  Dcl-S tempSalePrice Packed(7:2);
+  Dcl-S tempWhsPrice Packed(7:2);
+  Dcl-S tempStock Packed(5:0);
+  Dcl-S tempMinQty Packed(5:0);
+  Dcl-S tempDeleted Char(1);
 
   // Initialize response
   Clear response;
@@ -89,19 +102,31 @@ Dcl-Proc ListAllArticles Export;
     DoU SQLCODE <> 0 Or i > 1000;  // Max 1000 articles
       Exec SQL
         FETCH C1 INTO
-          :response:articleData(i):id,
-          :response:articleData(i):description,
-          :response:articleData(i):familyCode,
-          :response:articleData(i):familyDescription,
-          :response:articleData(i):vatCode,
-          :response:articleData(i):vatRate,
-          :response:articleData(i):salePrice,
-          :response:articleData(i):warehousePrice,
-          :response:articleData(i):stock,
-          :response:articleData(i):minimumQuantity,
-          :response:articleData(i):deleted;
+          :tempId,
+          :tempDesc,
+          :tempFamCode,
+          :tempFamDesc,
+          :tempVatCode,
+          :tempVatRate,
+          :tempSalePrice,
+          :tempWhsPrice,
+          :tempStock,
+          :tempMinQty,
+          :tempDeleted;
 
       If SQLCODE = 0;
+        // Copy temp variables to array element
+        response.articleData(i).id = tempId;
+        response.articleData(i).description = tempDesc;
+        response.articleData(i).familyCode = tempFamCode;
+        response.articleData(i).familyDescription = tempFamDesc;
+        response.articleData(i).vatCode = tempVatCode;
+        response.articleData(i).vatRate = tempVatRate;
+        response.articleData(i).salePrice = tempSalePrice;
+        response.articleData(i).warehousePrice = tempWhsPrice;
+        response.articleData(i).stock = tempStock;
+        response.articleData(i).minimumQuantity = tempMinQty;
+        response.articleData(i).deleted = tempDeleted;
         i += 1;
       EndIf;
     EndDo;
