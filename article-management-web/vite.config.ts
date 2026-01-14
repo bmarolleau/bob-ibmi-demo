@@ -13,9 +13,11 @@ export default defineConfig({
   server: {
     port: 3000,
     proxy: {
-      '/api': {
-        target: 'http://localhost:8080',
+      // Proxy IBM i Web Services requests
+      '/web': {
+        target: 'http://10.3.61.2:10026',
         changeOrigin: true,
+        secure: false,
       },
     },
   },

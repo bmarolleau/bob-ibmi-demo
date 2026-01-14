@@ -15,7 +15,7 @@ import {
   InlineLoading,
 } from '@carbon/react';
 import { articleService } from '../services/article.service';
-import { Article, ArticleInfo as ArticleInfoType } from '../types/article.types';
+import { Article } from '../types/article.types';
 
 interface ArticleInfoProps {
   article: Article;

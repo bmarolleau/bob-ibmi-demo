@@ -4,7 +4,32 @@
  */
 
 // ============================================================================
-// Core Article Types
+// IBM i API Raw Response Types
+// ============================================================================
+
+export interface IBMiArticleRaw {
+  ARID: string;                  // Article ID (6 chars)
+  ARDESC: string;                // Description (50 chars)
+  ARSALEPR: number;              // Reference sale price
+  ARWHSPR: number;               // Stock/warehouse price
+  ARTIFA: string;                // Family code (3 chars)
+  ARSTOCK: number;               // Current stock quantity
+  ARMINQTY: number;              // Minimum stock level
+  ARCUSQTY: number;              // Customer quantity
+  ARPURQTY: number;              // Purchase quantity
+  ARVATCD: string;               // VAT code (1 char)
+  ARCREA: string;                // Creation date
+  ARMOD: string;                 // Last modified timestamp (ISO format)
+  ARMODID: string;               // Modified by user
+  ARDEL: string;                 // Soft delete flag (' ' or 'X')
+}
+
+export interface IBMiArticleListResponse {
+  article_GetArticles_R: IBMiArticleRaw[];
+}
+
+// ============================================================================
+// Core Article Types (Frontend normalized)
 // ============================================================================
 
 export interface Article {
@@ -12,7 +37,7 @@ export interface Article {
   description: string;           // ARDESC - Description (50 chars)
   familyCode: string;            // ARTIFA - Family code (3 chars)
   familyDescription?: string;    // FAMDESC - Family description (from join)
-  vatCode: string;               // ARVATCD - VAT code (2 chars)
+  vatCode: string;               // ARVATCD - VAT code (1 char)
   vatRate?: number;              // VATRATE - VAT rate % (from join)
   vatDescription?: string;       // VATDESC - VAT description (from join)
   salePrice: number;             // ARSALEPR - Reference sale price
@@ -20,12 +45,9 @@ export interface Article {
   stock: number;                 // ARSTOCK - Current stock quantity
   minimumQuantity: number;       // ARMINQTY - Minimum stock level
   deleted: boolean;              // ARDEL - Soft delete flag
-  createdDate?: string;          // ARCREDAT - Creation date (ISO format)
-  createdTime?: string;          // ARCRETIM - Creation time
-  createdUser?: string;          // ARCREUSR - Created by user
-  modifiedDate?: string;         // ARMODDAT - Last modified date
-  modifiedTime?: string;         // ARMODTIM - Last modified time
-  modifiedUser?: string;         // ARMODUSR - Modified by user
+  createdDate?: string;          // ARCREA - Creation date (ISO format)
+  modifiedDate?: string;         // ARMOD - Last modified timestamp
+  modifiedUser?: string;         // ARMODID - Modified by user
 }
 
 export interface ArticleInfo {

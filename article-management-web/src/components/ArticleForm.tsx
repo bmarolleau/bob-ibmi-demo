@@ -131,14 +131,14 @@ export const ArticleForm: React.FC<ArticleFormProps> = ({
     setValidationErrors([]);
   };
 
-  const handleFamilyChange = (item: { selectedItem: Family | null }) => {
+  const handleFamilyChange = (item: { selectedItem: Family | null | undefined }) => {
     if (item.selectedItem) {
       setSelectedFamily(item.selectedItem);
       handleInputChange('familyCode', item.selectedItem.code);
     }
   };
 
-  const handleVATChange = (item: { selectedItem: VATDefinition | null }) => {
+  const handleVATChange = (item: { selectedItem: VATDefinition | null | undefined }) => {
     if (item.selectedItem) {
       setSelectedVAT(item.selectedItem);
       handleInputChange('vatCode', item.selectedItem.code);
@@ -254,7 +254,7 @@ export const ArticleForm: React.FC<ArticleFormProps> = ({
             id="sale-price"
             label="Reference Sale Price *"
             value={formData.salePrice || 0}
-            onChange={(e, { value }) => handleInputChange('salePrice', value)}
+            onChange={(_e, { value }) => handleInputChange('salePrice', value)}
             min={0}
             step={0.01}
             required
@@ -273,7 +273,7 @@ export const ArticleForm: React.FC<ArticleFormProps> = ({
             id="warehouse-price"
             label="Stock Price *"
             value={formData.warehousePrice || 0}
-            onChange={(e, { value }) => handleInputChange('warehousePrice', value)}
+            onChange={(_e, { value }) => handleInputChange('warehousePrice', value)}
             min={0}
             step={0.01}
             required
@@ -283,7 +283,7 @@ export const ArticleForm: React.FC<ArticleFormProps> = ({
             id="minimum-quantity"
             label="Minimum Stock *"
             value={formData.minimumQuantity || 0}
-            onChange={(e, { value }) => handleInputChange('minimumQuantity', value)}
+            onChange={(_e, { value }) => handleInputChange('minimumQuantity', value)}
             min={0}
             step={1}
             required
@@ -293,7 +293,7 @@ export const ArticleForm: React.FC<ArticleFormProps> = ({
             id="stock"
             label="Stock *"
             value={formData.stock || 0}
-            onChange={(e, { value }) => handleInputChange('stock', value)}
+            onChange={(_e, { value }) => handleInputChange('stock', value)}
             min={0}
             step={1}
             required

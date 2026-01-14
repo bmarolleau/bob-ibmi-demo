@@ -4,7 +4,7 @@
  */
 
 import { apiClient } from './api.client';
-import { API_ENDPOINTS } from './api.config';
+import { API_CONFIG, API_ENDPOINTS } from './api.config';
 import {
   Article,
   ArticleListRequest,
@@ -17,25 +17,107 @@ import {
   FamilyLookupRequest,
   FamilyLookupResponse,
   VATLookupResponse,
-  ProviderLookupRequest,
   ProviderLookupResponse,
   ApiResponse,
   DEFAULT_PAGE_SIZE,
+  IBMiArticleRaw,
+  IBMiArticleListResponse,
 } from '../types/article.types';
 
 class ArticleService {
   /**
+   * Transform IBM i raw article data to frontend Article format
+   */
+  private transformArticle(raw: IBMiArticleRaw): Article {
+    return {
+      id: raw.ARID.trim(),
+      description: raw.ARDESC.trim(),
+      familyCode: raw.ARTIFA.trim(),
+      vatCode: raw.ARVATCD.trim(),
+      salePrice: raw.ARSALEPR,
+      warehousePrice: raw.ARWHSPR,
+      stock: raw.ARSTOCK,
+      minimumQuantity: raw.ARMINQTY,
+      deleted: raw.ARDEL.trim() !== '',
+      createdDate: raw.ARCREA,
+      modifiedDate: raw.ARMOD,
+      modifiedUser: raw.ARMODID.trim(),
+    };
+  }
+
+  /**
    * Get paginated list of articles
    */
   async getArticles(request: ArticleListRequest = {}): Promise<ApiResponse<ArticleListResponse>> {
-    const params = {
-      page: request.page || 1,
-      pageSize: request.pageSize || DEFAULT_PAGE_SIZE,
-      positionTo: request.positionTo,
-      includeDeleted: request.includeDeleted || false,
-    };
+    try {
+      // Call IBM i Web Services endpoint
+      const url = `${API_CONFIG.baseURL}${API_ENDPOINTS.articles.list}`;
+      console.log('Fetching articles from:', url);
+      
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
 
-    return apiClient.get<ArticleListResponse>(API_ENDPOINTS.articles.list, { params });
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data: IBMiArticleListResponse = await response.json();
+      
+      // Transform IBM i format to frontend format
+      const articles = data.article_GetArticles_R.map(raw => this.transformArticle(raw));
+      
+      // Apply client-side filtering and pagination
+      let filteredArticles = articles;
+      
+      // Filter by positionTo (search)
+      if (request.positionTo) {
+        const searchTerm = request.positionTo.toUpperCase();
+        filteredArticles = articles.filter(article =>
+          article.id.toUpperCase().includes(searchTerm) ||
+          article.description.toUpperCase().includes(searchTerm)
+        );
+      }
+      
+      // Filter deleted if needed
+      if (!request.includeDeleted) {
+        filteredArticles = filteredArticles.filter(article => !article.deleted);
+      }
+      
+      // Calculate pagination
+      const page = request.page || 1;
+      const pageSize = request.pageSize || DEFAULT_PAGE_SIZE;
+      const totalRecords = filteredArticles.length;
+      const totalPages = Math.ceil(totalRecords / pageSize);
+      const startIndex = (page - 1) * pageSize;
+      const endIndex = startIndex + pageSize;
+      const paginatedArticles = filteredArticles.slice(startIndex, endIndex);
+
+      return {
+        success: true,
+        data: {
+          articles: paginatedArticles,
+          pagination: {
+            currentPage: page,
+            pageSize: pageSize,
+            totalRecords: totalRecords,
+            totalPages: totalPages,
+            hasMore: page < totalPages,
+          },
+        },
+      };
+    } catch (error) {
+      return {
+        success: false,
+        error: {
+          code: 'FETCH_ERROR',
+          message: error instanceof Error ? error.message : 'Failed to fetch articles',
+        },
+      };
+    }
   }
 
   /**

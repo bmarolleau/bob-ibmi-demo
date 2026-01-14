@@ -4,7 +4,7 @@
  */
 
 export const API_CONFIG = {
-  baseURL: import.meta.env.VITE_API_BASE_URL || '/api',
+  baseURL: import.meta.env.VITE_API_BASE_URL || '/web/services/article',
   timeout: 30000, // 30 seconds
   headers: {
     'Content-Type': 'application/json',
@@ -12,9 +12,9 @@ export const API_CONFIG = {
 };
 
 export const API_ENDPOINTS = {
-  // Article endpoints
+  // Article endpoints - IBM i Web Services
   articles: {
-    list: '/articles',
+    list: '/articles',  // GET endpoint that returns article_GetArticles_R array
     detail: (id: string) => `/articles/${id}`,
     create: '/articles',
     update: (id: string) => `/articles/${id}`,

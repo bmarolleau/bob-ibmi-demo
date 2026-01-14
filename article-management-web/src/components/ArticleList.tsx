@@ -28,7 +28,6 @@ import { Add } from '@carbon/icons-react';
 import { articleService } from '../services/article.service';
 import {
   Article,
-  ArticleListResponse,
   ArticleAction,
   DEFAULT_PAGE_SIZE,
 } from '../types/article.types';
@@ -142,7 +141,7 @@ export const ArticleList: React.FC<ArticleListProps> = ({ onAction, onCreateNew 
               <TableToolbarContent>
                 <TableToolbarSearch
                   placeholder="Position to..."
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearchTerm(e.target.value)}
+                  onChange={(_event, value) => setSearchTerm(value || '')}
                   value={searchTerm}
                 />
                 <Button
