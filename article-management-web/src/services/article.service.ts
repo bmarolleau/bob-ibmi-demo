@@ -128,17 +128,128 @@ class ArticleService {
   }
 
   /**
-   * Create new article
+   * Create new article using form parameters
    */
   async createArticle(data: ArticleCreateRequest): Promise<ApiResponse<ArticleResponse>> {
-    return apiClient.post<ArticleResponse>(API_ENDPOINTS.articles.create, data);
+    try {
+      const url = `${API_CONFIG.baseURL}${API_ENDPOINTS.articles.create}`;
+      console.log('Creating article at:', url);
+      
+      // Convert data to URLSearchParams for form encoding
+      const formData = new URLSearchParams();
+      formData.append('itemId', data.itemId);
+      formData.append('description', data.description);
+      formData.append('familyCode', data.familyCode);
+      formData.append('vatCode', data.vatCode);
+      formData.append('salePrice', data.salePrice.toString());
+      formData.append('warehousePrice', data.warehousePrice.toString());
+      formData.append('stock', data.stock.toString());
+      formData.append('minimumQuantity', data.minimumQuantity.toString());
+      
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: formData.toString(),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      // Check if response has content
+      const contentType = response.headers.get('content-type');
+      let result;
+      
+      if (contentType && contentType.includes('application/json')) {
+        const text = await response.text();
+        if (text && text.trim().length > 0) {
+          result = JSON.parse(text);
+        } else {
+          // Empty response but successful - return success with created item ID
+          result = { article: { id: data.itemId } };
+        }
+      } else {
+        // Non-JSON response - assume success if status is OK
+        result = { article: { id: data.itemId } };
+      }
+      
+      return {
+        success: true,
+        data: result,
+      };
+    } catch (error) {
+      return {
+        success: false,
+        error: {
+          code: 'CREATE_ERROR',
+          message: error instanceof Error ? error.message : 'Failed to create article',
+        },
+      };
+    }
   }
 
   /**
-   * Update existing article
+   * Update existing article using form parameters
    */
   async updateArticle(id: string, data: ArticleUpdateRequest): Promise<ApiResponse<ArticleResponse>> {
-    return apiClient.put<ArticleResponse>(API_ENDPOINTS.articles.update(id), data);
+    try {
+      const url = `${API_CONFIG.baseURL}${API_ENDPOINTS.articles.update(id)}`;
+      console.log('Updating article at:', url);
+      
+      // Convert data to URLSearchParams for form encoding
+      const formData = new URLSearchParams();
+      if (data.description !== undefined) formData.append('description', data.description);
+      if (data.familyCode !== undefined) formData.append('familyCode', data.familyCode);
+      if (data.vatCode !== undefined) formData.append('vatCode', data.vatCode);
+      if (data.salePrice !== undefined) formData.append('salePrice', data.salePrice.toString());
+      if (data.warehousePrice !== undefined) formData.append('warehousePrice', data.warehousePrice.toString());
+      if (data.stock !== undefined) formData.append('stock', data.stock.toString());
+      if (data.minimumQuantity !== undefined) formData.append('minimumQuantity', data.minimumQuantity.toString());
+      
+      const response = await fetch(url, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: formData.toString(),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      // Check if response has content
+      const contentType = response.headers.get('content-type');
+      let result;
+      
+      if (contentType && contentType.includes('application/json')) {
+        const text = await response.text();
+        if (text && text.trim().length > 0) {
+          result = JSON.parse(text);
+        } else {
+          // Empty response but successful - return success with updated item ID
+          result = { article: { id } };
+        }
+      } else {
+        // Non-JSON response - assume success if status is OK
+        result = { article: { id } };
+      }
+      
+      return {
+        success: true,
+        data: result,
+      };
+    } catch (error) {
+      return {
+        success: false,
+        error: {
+          code: 'UPDATE_ERROR',
+          message: error instanceof Error ? error.message : 'Failed to update article',
+        },
+      };
+    }
   }
 
   /**
@@ -170,22 +281,87 @@ class ArticleService {
   }
 
   /**
-   * Search families for lookup/prompt
+   * Search families for lookup/prompt from facode service
    */
   async searchFamilies(request: FamilyLookupRequest = {}): Promise<ApiResponse<FamilyLookupResponse>> {
-    const params = {
-      searchTerm: request.searchTerm,
-      limit: request.limit || 50,
-    };
+    try {
+      const url = `${API_CONFIG.baseURL}${API_ENDPOINTS.lookups.families}`;
+      console.log('Fetching families from:', url);
+      
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
 
-    return apiClient.get<FamilyLookupResponse>(API_ENDPOINTS.lookups.families, { params });
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      
+      // Handle IBM i facode service response format
+      // Response format: { "facode_Getfaid_R": [...] }
+      const families = data.facode_Getfaid_R || [];
+      
+      return {
+        success: true,
+        data: {
+          families,
+        },
+      };
+    } catch (error) {
+      return {
+        success: false,
+        error: {
+          code: 'FETCH_ERROR',
+          message: error instanceof Error ? error.message : 'Failed to fetch families',
+        },
+      };
+    }
   }
 
   /**
-   * Get all VAT definitions
+   * Get all VAT definitions from parameter service
    */
   async getVATDefinitions(): Promise<ApiResponse<VATLookupResponse>> {
-    return apiClient.get<VATLookupResponse>(API_ENDPOINTS.lookups.vat);
+    try {
+      const url = `${API_CONFIG.baseURL}${API_ENDPOINTS.lookups.vat}`;
+      console.log('Fetching VAT definitions from:', url);
+      
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      
+      // Handle IBM i parameter service response format
+      // Response format: { "parameter_Parameters_R": [...] }
+      const vatDefinitions = data.parameter_Parameters_R || [];
+      
+      return {
+        success: true,
+        data: {
+          vatDefinitions,
+        },
+      };
+    } catch (error) {
+      return {
+        success: false,
+        error: {
+          code: 'FETCH_ERROR',
+          message: error instanceof Error ? error.message : 'Failed to fetch VAT definitions',
+        },
+      };
+    }
   }
 
   /**
@@ -223,8 +399,8 @@ class ArticleService {
       if (!data.vatCode.trim()) {
         errors.push('VAT code is required');
       }
-      if (data.vatCode.length !== 2) {
-        errors.push('VAT code must be exactly 2 characters');
+      if (data.vatCode.length > 1) {
+        errors.push('VAT code must be 1 character');
       }
     }
 

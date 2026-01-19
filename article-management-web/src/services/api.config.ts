@@ -4,7 +4,9 @@
  */
 
 export const API_CONFIG = {
-  baseURL: import.meta.env.VITE_API_BASE_URL || '/web/services/article',
+  // Use empty string for development (uses Vite proxy)
+  // Set VITE_API_BASE_URL for production deployment
+  baseURL: import.meta.env.VITE_API_BASE_URL || '',
   timeout: 30000, // 30 seconds
   headers: {
     'Content-Type': 'application/json',
@@ -14,19 +16,19 @@ export const API_CONFIG = {
 export const API_ENDPOINTS = {
   // Article endpoints - IBM i Web Services
   articles: {
-    list: '/articles',  // GET endpoint that returns article_GetArticles_R array
-    detail: (id: string) => `/articles/${id}`,
-    create: '/articles',
-    update: (id: string) => `/articles/${id}`,
-    delete: (id: string) => `/articles/${id}`,
-    info: (id: string) => `/articles/${id}/info`,
-    providers: (id: string) => `/articles/${id}/providers`,
+    list: '/web/services/article/articles',  // GET endpoint that returns article_GetArticles_R array
+    detail: (id: string) => `/web/services/article/articles/${id}`,
+    create: '/web/services/article/articles',
+    update: (id: string) => `/web/services/article/articles/${id}`,
+    delete: (id: string) => `/web/services/article/articles/${id}`,
+    info: (id: string) => `/web/services/article/articles/${id}/info`,
+    providers: (id: string) => `/web/services/article/articles/${id}/providers`,
   },
   
   // Lookup endpoints
   lookups: {
-    families: '/lookups/families',
-    vat: '/lookups/vat',
+    families: '/web/services/facode/family',  // Real family service endpoint
+    vat: '/web/services/parameter/vat',  // Real VAT service endpoint
   },
 };
 

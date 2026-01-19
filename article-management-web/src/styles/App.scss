@@ -99,4 +99,141 @@ body {
   margin-bottom: 2rem;
 }
 
+// Landing Page - Carbon Design System Style
+.landing-page-carbon {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 2rem 0;
+
+  .landing-title {
+    margin-bottom: 0.5rem;
+  }
+
+  .landing-description {
+    color: var(--cds-text-secondary);
+    margin-bottom: 2rem;
+  }
+
+  .landing-grid {
+    margin-top: 2rem;
+  }
+
+  .menu-section {
+    margin-bottom: 3rem;
+
+    .menu-section-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+
+      svg {
+        fill: var(--cds-icon-primary);
+      }
+
+      .menu-section-title {
+        margin: 0;
+      }
+    }
+  }
+
+  .menu-tile {
+    height: 100%;
+    min-height: 160px;
+    margin-bottom: 1rem;
+    transition: all 0.2s ease;
+
+    &:not(.disabled) {
+      cursor: pointer;
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+    }
+
+    &.disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+
+      .menu-tile-content {
+        h4 {
+          color: var(--cds-text-disabled);
+        }
+      }
+    }
+
+    .menu-tile-content {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      gap: 0.75rem;
+
+      .menu-tile-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 1rem;
+
+        h4 {
+          margin: 0;
+          font-size: 1rem;
+          font-weight: 600;
+          color: var(--cds-text-primary);
+          flex: 1;
+        }
+
+        .menu-tile-program {
+          font-size: 0.75rem;
+          color: var(--cds-text-secondary);
+          background-color: var(--cds-layer-02);
+          padding: 0.25rem 0.5rem;
+          border-radius: 4px;
+          white-space: nowrap;
+        }
+      }
+
+      .menu-tile-description {
+        flex: 1;
+        font-size: 0.875rem;
+        color: var(--cds-text-secondary);
+        margin: 0;
+        line-height: 1.4;
+      }
+
+      .menu-tile-action {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--cds-link-primary);
+        font-size: 0.875rem;
+        font-weight: 600;
+        margin-top: auto;
+
+        svg {
+          fill: var(--cds-link-primary);
+        }
+      }
+
+      .menu-tile-status {
+        font-size: 0.75rem;
+        color: var(--cds-text-secondary);
+        font-style: italic;
+        margin-top: auto;
+      }
+    }
+  }
+}
+
+// Responsive adjustments for landing page
+@media (max-width: 768px) {
+  .landing-page-carbon {
+    padding: 1rem 0;
+
+    .menu-tile {
+      min-height: 140px;
+    }
+  }
+}
+
 // Made with Bob

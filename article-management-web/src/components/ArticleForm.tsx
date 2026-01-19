@@ -41,6 +41,7 @@ export const ArticleForm: React.FC<ArticleFormProps> = ({
 }) => {
   // Form state
   const [formData, setFormData] = useState<Partial<Article>>({
+    id: '',
     description: '',
     familyCode: '',
     vatCode: '',
@@ -83,7 +84,7 @@ export const ArticleForm: React.FC<ArticleFormProps> = ({
     if (formData.salePrice && selectedVAT) {
       const calculated = articleService.calculatePriceWithVAT(
         formData.salePrice,
-        selectedVAT.rate
+        selectedVAT.RATE
       );
       setPriceWithVAT(calculated);
     }
@@ -100,10 +101,10 @@ export const ArticleForm: React.FC<ArticleFormProps> = ({
       setFormData(article);
 
       // Set selected family and VAT
-      const family = families.find((f) => f.code === article.familyCode);
+      const family = families.find((f) => f.CODE === article.familyCode);
       if (family) setSelectedFamily(family);
 
-      const vat = vatDefinitions.find((v) => v.code === article.vatCode);
+      const vat = vatDefinitions.find((v) => v.CODE === article.vatCode);
       if (vat) setSelectedVAT(vat);
     } else {
       setError(response.error?.message || 'Failed to load article');
@@ -134,14 +135,14 @@ export const ArticleForm: React.FC<ArticleFormProps> = ({
   const handleFamilyChange = (item: { selectedItem: Family | null | undefined }) => {
     if (item.selectedItem) {
       setSelectedFamily(item.selectedItem);
-      handleInputChange('familyCode', item.selectedItem.code);
+      handleInputChange('familyCode', item.selectedItem.CODE);
     }
   };
 
   const handleVATChange = (item: { selectedItem: VATDefinition | null | undefined }) => {
     if (item.selectedItem) {
       setSelectedVAT(item.selectedItem);
-      handleInputChange('vatCode', item.selectedItem.code);
+      handleInputChange('vatCode', item.selectedItem.CODE);
     }
   };
 
@@ -160,7 +161,18 @@ export const ArticleForm: React.FC<ArticleFormProps> = ({
 
     let response;
     if (mode === 'create') {
-      response = await articleService.createArticle(formData as ArticleCreateRequest);
+      // For create mode, include itemId from the form
+      const createData: ArticleCreateRequest = {
+        itemId: formData.id || '',
+        description: formData.description || '',
+        familyCode: formData.familyCode || '',
+        vatCode: formData.vatCode || '',
+        salePrice: formData.salePrice || 0,
+        warehousePrice: formData.warehousePrice || 0,
+        stock: formData.stock || 0,
+        minimumQuantity: formData.minimumQuantity || 0,
+      };
+      response = await articleService.createArticle(createData);
     } else {
       response = await articleService.updateArticle(
         articleId!,
@@ -207,6 +219,18 @@ export const ArticleForm: React.FC<ArticleFormProps> = ({
 
       <Form onSubmit={handleSubmit}>
         <Stack gap={6}>
+          {mode === 'create' && (
+            <TextInput
+              id="item-id"
+              labelText="Item ID *"
+              placeholder="Enter item ID (6 characters)"
+              value={formData.id || ''}
+              onChange={(e) => handleInputChange('id', e.target.value.toUpperCase())}
+              maxLength={6}
+              required
+            />
+          )}
+
           {mode === 'edit' && (
             <TextInput
               id="article-id"
@@ -231,7 +255,7 @@ export const ArticleForm: React.FC<ArticleFormProps> = ({
             titleText="Family *"
             placeholder="Select family"
             items={families}
-            itemToString={(item) => (item ? `${item.code} - ${item.description}` : '')}
+            itemToString={(item) => (item ? `${item.CODE} - ${item.DESCRIPTION}` : '')}
             selectedItem={selectedFamily}
             onChange={handleFamilyChange}
             required
@@ -243,7 +267,7 @@ export const ArticleForm: React.FC<ArticleFormProps> = ({
             placeholder="Select VAT code"
             items={vatDefinitions}
             itemToString={(item) =>
-              item ? `${item.code} - ${item.description} (${item.rate}%)` : ''
+              item ? `${item.CODE} - ${item.DESCRIPTION} (${item.RATE}%)` : ''
             }
             selectedItem={selectedVAT}
             onChange={handleVATChange}

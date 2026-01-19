@@ -4,8 +4,9 @@
  */
 
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Content, Theme } from '@carbon/react';
+import { LandingPage } from './pages/LandingPage';
 import { ArticleManagement } from './pages/ArticleManagement';
 import './styles/App.scss';
 
@@ -15,7 +16,7 @@ const App: React.FC = () => {
       <Router>
         <Content>
           <Routes>
-            <Route path="/" element={<Navigate to="/articles" replace />} />
+            <Route path="/" element={<LandingPage />} />
             <Route path="/articles" element={<ArticleManagement />} />
           </Routes>
         </Content>

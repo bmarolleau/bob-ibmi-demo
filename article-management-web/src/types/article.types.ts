@@ -60,14 +60,14 @@ export interface ArticleInfo {
 // ============================================================================
 
 export interface Family {
-  code: string;                  // FACODE - Family code (3 chars)
-  description: string;           // FADESC - Family description (30 chars)
+  CODE: string;                  // Family code from facode service
+  DESCRIPTION: string;           // Family description
 }
 
 export interface VATDefinition {
-  code: string;                  // VATCODE - VAT code (2 chars)
-  rate: number;                  // VATRATE - VAT rate percentage
-  description: string;           // VATDESC - VAT description (30 chars)
+  CODE: string;                  // VAT code from parameter service
+  RATE: number;                  // VAT rate percentage
+  DESCRIPTION: string;           // VAT description
 }
 
 export interface Provider {
@@ -106,6 +106,7 @@ export interface ArticleListResponse {
 }
 
 export interface ArticleCreateRequest {
+  itemId: string;                // ARID - Article/Item ID (6 chars, user-provided)
   description: string;
   familyCode: string;
   vatCode: string;
