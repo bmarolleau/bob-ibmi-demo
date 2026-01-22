@@ -5,3 +5,4 @@
 **/.DS_Store
 .project
 .env
+.bob/notes/pending-notes.txt

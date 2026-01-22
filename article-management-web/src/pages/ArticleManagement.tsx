@@ -4,7 +4,9 @@
  */
 
 import React, { useState } from 'react';
-import { Modal } from '@carbon/react';
+import { Link } from 'react-router-dom';
+import { Modal, Button } from '@carbon/react';
+import { Home } from '@carbon/icons-react';
 import { ArticleList } from '../components/ArticleList';
 import { ArticleForm } from '../components/ArticleForm';
 import { ArticleInfo } from '../components/ArticleInfo';
@@ -81,6 +83,13 @@ export const ArticleManagement: React.FC = () => {
 
   return (
     <div className="article-management">
+      <div style={{ marginBottom: '1rem' }}>
+        <Link to="/" style={{ textDecoration: 'none' }}>
+          <Button kind="ghost" renderIcon={Home}>
+            Back to Home
+          </Button>
+        </Link>
+      </div>
       {viewMode === 'list' && (
         <ArticleList
           key={refreshKey}

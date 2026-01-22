@@ -1,9 +1,8 @@
 
 -- Correct query for FAMILLY table
-SELECT 
-    FAID as code,
-    FADESC as description
-    PARM2 as description     -- Description
+SELECT
+    PACODE as code,
+    PARM2 as description -- Description
 FROM SAMCO.PARAMETER
 WHERE PACODE = 'VAT'
 ORDER BY PARM3;
