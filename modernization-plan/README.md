@@ -545,8 +545,9 @@ The modernization leverages **IBM Carbon Design System** for a professional UI, 
 | **[04-TypeScript-Interfaces.md](04-TypeScript-Interfaces.md)** | Type definitions | 873 lines |
 | **[05-RPG-Service-Programs.md](05-RPG-Service-Programs.md)** | Backend specifications | 873 lines |
 | **[06-Implementation-Guide.md](06-Implementation-Guide.md)** | Code examples and setup | 1073 lines |
+| **[07-Final-Call-Graph-Diagrams.md](07-Final-Call-Graph-Diagrams.md)** | Call graph diagrams | 471 lines |
 
-**Total Documentation**: 4,525+ lines of comprehensive technical specifications
+**Total Documentation**: 5k+ lines of comprehensive technical specifications
 
 ---
 
